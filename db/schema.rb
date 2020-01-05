@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_05_055254) do
+ActiveRecord::Schema.define(version: 2020_01_05_074620) do
 
   create_table "chages", force: :cascade do |t|
     t.integer "user_id"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_01_05_055254) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.integer "pre_tax_price", default: 0
+    t.integer "price", default: 0
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 2020_01_05_055254) do
   create_table "profile_images", force: :cascade do |t|
     t.integer "user_id"
     t.string "profile_image_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.integer "price"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

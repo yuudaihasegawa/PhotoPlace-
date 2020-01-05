@@ -3,6 +3,7 @@ class CreatePurchases < ActiveRecord::Migration[5.2]
     create_table :purchases do |t|
       t.integer :user_id
       t.integer :post_id
+      t.integer :price
       t.datetime :deleted_at
 
       t.timestamps
