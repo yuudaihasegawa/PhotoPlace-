@@ -1,0 +1,2 @@
+class Chage < ApplicationRecord
+end
