@@ -12,7 +12,8 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to public_user_path(@user), notice: "プロフィールを更新しました。"
+      flash[:success] = 'プロフィールを変更しました'
+      redirect_to public_user_path(@user)
     else
       render :edit
     end
@@ -28,7 +29,7 @@ class Public::UsersController < ApplicationController
       @user.destroy
       redirect_to new_user_registration_path, notice: "退会しました。ご利用ありがとうございました。"
     else
-      flash.now[:public] = "入力情報が一致しませんでした。"
+      flash[:public] = "入力情報が一致しませんでした。"
       render template: "public/users/confile"
     end
   end

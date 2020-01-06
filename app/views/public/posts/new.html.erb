@@ -1,0 +1,20 @@
+<%= form_for(@post, url: public_posts_path) do |f| %>
+    <%= f.label :title %>
+		 <%= f.text_field :title, class:"form-control" %>
+
+    <%= f.label :content %>
+		<%= f.text_area :content, class:"form-control" %>
+
+    <%= f.label :price %>
+		<%= f.number_field :price, class:"form-control" %>
+
+    <%= f.label :"風景写真" %>
+    <%= f.fields_for :post_images do |t| %>
+      <%= render 'post_image_fields', f: t %>
+    <% end %>
+
+    <%= f.label :"住所"%>
+    <%= f.text_area :address, class:"form-control" %>
+    
+    <%= f.submit "Create Book",class:"btn btn-primary" %>
+<% end %>
