@@ -4,7 +4,6 @@
   (アカウントが削除されます)
 </p>
 <h4 class="flash-message text-center"><%= flash.now[:public] %></h4>
-
 <%= form_for( @user, url: public_user_path(@user), method: :delete) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
