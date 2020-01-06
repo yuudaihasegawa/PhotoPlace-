@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  devise_for :users,controllers: {
+    sessions:     'publics/sessions',
+    passwords:     'publics/passwords',
+    registrations: 'publics/registrations',
+  }
+
 
 
   namespace :public do
-    get 'users/confile'
     get 'homes/top'
     get 'homes/about'
-    resources :users, only:[:show,:edit,:update,:destroy,:confile] do
+    resources :users, only:[:show,:edit,:update,:destroy] do
+      get 'users/confile'
       resource :chages, only:[:create,:new]
     end
     resources :posts do

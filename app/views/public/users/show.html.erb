@@ -1,0 +1,7 @@
+<%= @user.name %>
+<%= @user.email %>
+<%= @user.introduction %>
+<h2>チャージ金額<%= @user.pocket_money %>円</h2>
+
+<%= link_to "編集",edit_public_user_path(@user) %>
+<%= link_to "退会",public_user_users_confile_path(@user) %>

@@ -1,0 +1,22 @@
+<h2>退会手続き</h2>
+<p class="alert alert-danger text-center">
+  本当に退会してもよろしいでしょうか？<br>
+  (アカウントが削除されます)
+</p>
+<h4 class="flash-message text-center"><%= flash.now[:public] %></h4>
+
+<%= form_for( @user, url: public_user_path(@user), method: :delete) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "退会確定" %>
+  </div>
+<% end %>
