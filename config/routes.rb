@@ -15,14 +15,15 @@ Rails.application.routes.draw do
       get 'users/confile'
       resource :chages, only:[:create,:new]
       resources :posts, only:[:new,:create]
+      resources :tags, only:[:create]
     end
     resources :posts, only:[:index,:show,:edit,:update,:destroy] do
       resources :tags, only:[:new]
       resource :favorites, only:[:create,:destroy]
       resources :comments, only:[:create,:edit,:update,:destroy]
       resource :purchases, only:[:create]
+      resources :post_tags, only:[:create,:destroy]
     end
-    resources :tags, only:[:create]
     resources :maps, only:[:index]
     resources :homes, only:[:top,:about]
   end

@@ -1,7 +1,30 @@
 class Public::TagsController < ApplicationController
 
   def new
-    @tags = Tag.all
-    @tag_new = Tag.new
+    @post = Post.find(params[:post_id])
+    @tag= Tag.new
+    @post_tag = PostTag.new
+  end
+
+  def create
+    @user = User.find(params[:user_id])
+    @tag = Tag.new(tag_params)
+    if @tag.save
+      flash[:success] = '新しくタグを作りました'
+      redirect_to new_public_user_post_path(@user)
+    else
+      render template: "public/users/posts/new"
+    end
+
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title,:content,:price,post_images_attributes:[:id,:image_id],maps_attributes:[:id,:address,:latitude,:longitude]) 
+  end
+
+  def tag_params
+    params.require(:tag).permit(:name,:id) 
   end
 end
