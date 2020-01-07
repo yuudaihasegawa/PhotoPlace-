@@ -37,17 +37,6 @@ ActiveRecord::Schema.define(version: 2020_01_05_074620) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "maps", force: :cascade do |t|
-    t.integer "post_id"
-    t.string "address"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["address"], name: "index_maps_on_address"
-  end
-
   create_table "post_images", force: :cascade do |t|
     t.string "image_id"
     t.integer "post_id"
@@ -68,9 +57,13 @@ ActiveRecord::Schema.define(version: 2020_01_05_074620) do
     t.string "title"
     t.text "content"
     t.integer "price", default: 0
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["address"], name: "index_posts_on_address"
     t.index ["title"], name: "index_posts_on_title"
   end
 

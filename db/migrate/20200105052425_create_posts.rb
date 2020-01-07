@@ -4,6 +4,9 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :title, index: true
       t.text :content
       t.integer :price, default: 0
+      t.string :address, index: true
+      t.float :latitude
+      t.float :longitude
       t.datetime :deleted_at
 
       t.timestamps

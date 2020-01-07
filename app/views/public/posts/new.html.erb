@@ -14,11 +14,9 @@
     <div class="links">
       <%= link_to_add_association "写真を追加", f, :post_images %>
     </div>
-    <%= f.fields_for :maps do |map| %>
-      <%= map.label :"住所"%>
-      <%= map.text_area :address, class:"form-control" %>
-    <% end %>
-
+    <%= f.label :"住所"%>
+    <%= f.text_area :address, class:"form-control" %>
+    
     <%= f.fields_for :post_tags do |t| %>
   　　<%= render 'post_tag_fields', f: t %>
     <% end %>
