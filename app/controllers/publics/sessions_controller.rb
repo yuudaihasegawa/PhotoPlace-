@@ -26,11 +26,11 @@ class Publics::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    public_user_path(resource.id)
+    admin_homes_top_path
   end
 
   def after_sign_out_path_for(resource)
-    public_homes_top_path
+    new_admin_session_path
   end
 
   
