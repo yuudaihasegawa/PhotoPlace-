@@ -4,12 +4,38 @@
     <title>PhotoPlace</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%# <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/skippr.css"> 
+    <link rel="stylesheet" href="css/style.css">  %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
+    <header class="navbar navbar-custom">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="navbarEexample6">
+          <div class="navbar-left">
+            <h1>ロゴ</h1>
+          </div>
+          <%# <% if admin_signed_in? %> 
+          <li>
+            <%=  link_to public_user_path(current_user.id) do %>
+              <% current_user.name %>
+            <% end %>
+            <%= link_to "投稿一覧", public_posts_path %>
+          </li>
+          <%# <% elsif user_signed_in? %> 
+
+          <%# <% else %> 
+          <%# <%  end %> 
+        </div>
+      <div>
+      
+    </header>
   <body>
+    
     <%= yield %>
   </body>
 </html>

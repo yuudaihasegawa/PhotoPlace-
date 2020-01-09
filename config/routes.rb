@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :post_tags, only:[:create,:destroy]
     end
     resources :homes, only:[:top,:about]
+    resources :maps, only:[:index]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
