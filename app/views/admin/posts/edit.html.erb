@@ -1,4 +1,4 @@
-<%= form_for(@post, url: public_user_posts_path(@user)) do |f| %>
+<%= form_for(@post, url: admin_post_path) do |f| %>
     <%= f.label :title %>
 		 <%= f.text_field :title, class:"form-control" %>
 
@@ -25,9 +25,4 @@
     </div>
     
     <%= f.submit "投稿する",class:"btn btn-primary" %>
-<% end %>
-
-<%= form_for(@tag, url: public_user_tags_path,method: :post) do |f| %>
-  <%= f.text_field :name ,autofocus: true %>
-  <%= f.submit "タグを作る", class: "btn btn-lg btn-success" %>
 <% end %>

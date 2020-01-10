@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_100436) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
+    t.integer "user_id", null: false
     t.text "content"
     t.integer "price", default: 0
     t.string "address"

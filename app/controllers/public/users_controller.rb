@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
 
 
   def show
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -11,7 +11,6 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    binding.pry
     if @user.update(user_params)
       flash[:success] = 'プロフィールを変更しました'
       redirect_to public_user_path(@user)

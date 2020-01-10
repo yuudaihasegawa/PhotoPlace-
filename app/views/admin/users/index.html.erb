@@ -1,0 +1,28 @@
+
+      <h2 class="pro text-center">会員一覧</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>顔写真</th>
+            <th>名前</th>
+            <th>自己紹介文</th>
+            <th></th>
+          </tr>
+        <thead>
+
+        <% @user.each do |user| %>
+          <tbody>
+            <tr>
+              <th>
+                <%= attachment_image_tag user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
+              </th>
+              <th>
+                <%= link_to admin_user_path(user) do %>
+                  <%= user.name %>
+                <% end %>
+              </th>
+              <th><%= user.introduction %></th>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>

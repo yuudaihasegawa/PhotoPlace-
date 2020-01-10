@@ -23,6 +23,8 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @user = User.find(params[:user_id])
+    @post.user_id = @user.id
     if @post.save
       flash[:success] = '投稿が完了しました'
       redirect_to public_posts_path(@post)
@@ -33,7 +35,7 @@ class Public::PostsController < ApplicationController
 
 
   def update
-    
+
   end
 
   def destroy
@@ -44,6 +46,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title,:content,:price,:_destroy,:address,:latitude,:longitude,post_images_attributes:[:id,:image,:_destroy],post_tags_attributes:[:id,:tag_id,:_destroy]) 
+    params.require(:post).permit(:title,:content,:price,:_destroy,:address,:latitude,:longitude,:user_id,post_images_attributes:[:id,:image,:_destroy],post_tags_attributes:[:id,:tag_id,:_destroy]) 
   end
 end

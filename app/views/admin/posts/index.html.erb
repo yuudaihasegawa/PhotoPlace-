@@ -1,16 +1,6 @@
-<%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpg" %>
-<h3><%= @user.name %></h3>
-<h3>Email：<%= @user.email %></h3>
-<h3>自己紹介文：<%= @user.introduction %></h3>
-<h2>チャージ金額<%= @user.pocket_money %>円</h2>
-
-<% if current_user.id == @user.id %>
-  <%= link_to "編集",edit_public_user_path(@user) %>
-  <%= link_to "退会",public_user_users_confile_path(@user) %>
+<% if flash[:notice] %>
+        <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
 <% end %>
-
-
-
 
 <table class="table table-striped">
     <thead>
@@ -22,7 +12,7 @@
       </tr>
     <thead>
 
-    <% @user.posts.each do |post| %>
+    <% @post.each do |post| %>
       <tbody>
         <tr>
           <th>
@@ -31,7 +21,7 @@
             <% end %>
           </th>
           <th>
-            <%= link_to public_post_path(post) do %>
+            <%= link_to admin_post_path(post) do %>
               <%= post.title %>
             <% end %>
           </th>

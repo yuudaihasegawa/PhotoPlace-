@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+  
+  belongs_to :user
+
   has_many :post_images
   has_many :post_tags
   has_many :favorites
