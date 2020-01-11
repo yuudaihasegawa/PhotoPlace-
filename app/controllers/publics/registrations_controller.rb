@@ -64,9 +64,7 @@ class Publics::RegistrationsController < Devise::RegistrationsController
     public_user_path(resource.id)
   end
 
-  def after_sign_out_path_for(resource)
+  def after_sign_out_path_for(_resource)
     public_homes_top_path
   end
-
-
 end

@@ -1,5 +1,6 @@
-class Admin::UsersController < ApplicationController
+# frozen_string_literal: true
 
+class Admin::UsersController < ApplicationController
   def index
     @user = User.all
   end
@@ -32,6 +33,6 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email,:introduction,:pocet_money,:profile_image) 
+    params.require(:user).permit(:name, :email, :introduction, :pocet_money, :profile_image)
   end
 end

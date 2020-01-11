@@ -1,6 +1,6 @@
+# frozen_string_literal: true
+
 class Public::UsersController < ApplicationController
-
-
   def show
     @user = User.find(params[:id])
   end
@@ -27,17 +27,16 @@ class Public::UsersController < ApplicationController
     @user = User.find_by_email(params[:user][:email])
     if @user.valid_password?(params[:user][:password])
       @user.destroy
-      redirect_to new_user_registration_path, notice: "退会しました。ご利用ありがとうございました。"
+      redirect_to new_user_registration_path, notice: '退会しました。ご利用ありがとうございました。'
     else
-      flash[:public] = "入力情報が一致しませんでした。"
-      render template: "public/users/confile"
+      flash[:public] = '入力情報が一致しませんでした。'
+      render template: 'public/users/confile'
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email,:introduction,:pocet_money,:profile_image) 
+    params.require(:user).permit(:name, :email, :introduction, :pocet_money, :profile_image)
   end
-
 end
