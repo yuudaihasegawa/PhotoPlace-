@@ -1,0 +1,37 @@
+
+  <% @post.post_images.each do |image| %>
+    <%= attachment_image_tag image, :image, size: "50x50", fallback: "no_image.jpg" %>
+  <% end %>
+  <%= @post.title %>
+  <%= @post.content %>
+  <%= @post.price %>
+  <%= @post.address %>
+
+  <%= form_for(@comment, url: public_post_comments_path(@post)) do |f| %>
+	    <%= f.text_area :content, rows:'5',placeholder: "コメントをここに" %>
+	    <%= f.submit "送信する" %>
+  <% end %>
+
+   <% if @post.favorited_by?(current_user) %>
+      <li>
+        <%= link_to public_post_favorites_path(@post), method: :delete do %>
+          <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+          <%= @post.favorites.count %> いいね
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to public_post_favorites_path(@post), method: :post do %>
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <%= @post.favorites.count %> いいね
+	      <% end %>
+      </li>
+    <% end %>
+
+  <% @post.comments.each do |comment| %>
+    <%= comment.content %>
+    <%= link_to public_user_path(comment.user.id) do %>
+      <%= comment.user.name %>
+    <% end %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+  <% end %>
