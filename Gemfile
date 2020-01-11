@@ -72,3 +72,5 @@ gem 'cocoon'
 gem 'ransack'
 gem "pry-byebug"
 gem 'geocoder'
+
+

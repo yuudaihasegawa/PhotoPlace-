@@ -1,3 +1,11 @@
+<h2>新しいタグを作る</h2>
+<%= form_for(@tag, url: public_user_tags_path,method: :post) do |f| %>
+  <%= f.text_field :name ,autofocus: true %>
+  <%= f.submit "タグを作る", class: "btn btn-lg btn-success" %>
+<% end %>
+
+
+<h2>投稿</h2>
 <%= form_for(@post, url: public_user_posts_path(@user)) do |f| %>
     <%= f.label :title %>
 		 <%= f.text_field :title, class:"form-control" %>
@@ -25,9 +33,4 @@
     </div>
     
     <%= f.submit "投稿する",class:"btn btn-primary" %>
-<% end %>
-
-<%= form_for(@tag, url: public_user_tags_path,method: :post) do |f| %>
-  <%= f.text_field :name ,autofocus: true %>
-  <%= f.submit "タグを作る", class: "btn btn-lg btn-success" %>
 <% end %>
