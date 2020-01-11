@@ -1,5 +1,6 @@
-class Admin::TagsController < ApplicationController
+# frozen_string_literal: true
 
+class Admin::TagsController < ApplicationController
   def index
     @tags = Tag.all
   end
@@ -9,5 +10,4 @@ class Admin::TagsController < ApplicationController
     @tag.destroy
     redirect_to admin_tags_path
   end
-
 end

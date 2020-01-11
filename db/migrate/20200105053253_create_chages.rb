@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateChages < ActiveRecord::Migration[5.2]
   def change
     create_table :chages do |t|

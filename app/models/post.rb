@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
-  
   belongs_to :user
 
   has_many :post_images
@@ -18,4 +19,3 @@ class Post < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 end
-
