@@ -1,0 +1,44 @@
+<%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpg" %>
+<h3><%= @user.name %></h3>
+<h3>Email：<%= @user.email %></h3>
+<h3>自己紹介文：<%= @user.introduction %></h3>
+<h2>チャージ金額<%= @user.pocket_money %>円</h2>
+
+<%= link_to edit_admin_user_path(@user) do %>
+  <p>会員の情報を編集する</p>
+<% end %>
+<%= link_to admin_user_path(@user),method: :delete do %>
+  <p>この会員を強制退会</p>
+<% end %>
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>投稿写真</th>
+        <th>タイトル</th>
+        <th>値段</th>
+        <th>投稿場所</th>
+      </tr>
+    <thead>
+
+    <% @user.posts.each do |post| %>
+      <tbody>
+        <tr>
+          <th>
+            <% post.post_images.each do |image| %>
+              <%= attachment_image_tag image, :image, size: "50x50", fallback: "no_image.jpg" %>
+            <% end %>
+          </th>
+          <th>
+            <%= link_to admin_post_path(post) do %>
+              <%= post.title %>
+            <% end %>
+          </th>
+          <th><%= post.price %></th>
+          <th><%= post.address %> </th>
+        </tr>
+      </tbody>
+    <% end %>
+</table>
+

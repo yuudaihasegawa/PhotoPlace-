@@ -1,0 +1,19 @@
+<h1>投稿一覧</h1>
+
+
+
+<div class="example wow bounceInDown" data-wow-duration="0.5s" data-wow-delay="1s" data-wow-offset="10" data-wow-iteration="1">
+  <div class="example_image">
+    <% @post.each do |post| %>
+      <%= link_to public_post_path(post) do %>
+        <% post.post_images.each do |image| %>
+          <%= attachment_image_tag image, :image, size: "50x50", fallback: "no_image.jpg" %>
+        <% end %>
+        <%= post.title %>
+        <%= post.content %>
+        <%= post.price %>
+        <%= post.address %> 
+      <% end %>
+    <% end %>
+  </div>
+</div>

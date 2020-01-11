@@ -1,0 +1,36 @@
+<h2>新しいタグを作る</h2>
+<%= form_for(@tag, url: public_user_tags_path,method: :post) do |f| %>
+  <%= f.text_field :name ,autofocus: true %>
+  <%= f.submit "タグを作る", class: "btn btn-lg btn-success" %>
+<% end %>
+
+
+<h2>投稿</h2>
+<%= form_for(@post, url: public_user_posts_path(@user)) do |f| %>
+    <%= f.label :title %>
+		 <%= f.text_field :title, class:"form-control" %>
+
+    <%= f.label :content %>
+		<%= f.text_area :content, class:"form-control" %>
+
+    <%= f.label :price %>
+		<%= f.number_field :price, class:"form-control" %>
+
+    <%= f.fields_for :post_images do |t| %>
+      <%= render 'post_image_fields', f: t %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "写真を追加", f, :post_images %>
+    </div>
+    <%= f.label :"住所"%>
+    <%= f.text_area :address, class:"form-control" %>
+    
+    <%= f.fields_for :post_tags do |t| %>
+      <%= render 'post_tag_fields', f: t %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "タグを追加", f, :post_tags %>
+    </div>
+    
+    <%= f.submit "投稿する",class:"btn btn-primary" %>
+<% end %>

@@ -59,4 +59,14 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def after_sign_up_path_for(resource)
+    public_user_path(resource.id)
+  end
+
+  def after_sign_out_path_for(resource)
+    public_homes_top_path
+  end
+
+
 end
