@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     passwords: 'publics/passwords',
     registrations: 'publics/registrations'
   }
-
+  
   namespace :admin do
     get 'homes/top'
     resources :users, only: %i[index edit update show destroy]
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
+    
     get 'homes/top'
     get 'homes/about'
     resources :users, only: %i[show edit update destroy] do
