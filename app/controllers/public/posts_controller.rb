@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
 
   def index
-    @post = Post.all
+    @post = Post.all.includes(:favorites,:post_images)
   end
 
   def show
@@ -48,4 +48,5 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title,:content,:price,:_destroy,:address,:latitude,:longitude,:user_id,post_images_attributes:[:id,:image,:_destroy],post_tags_attributes:[:id,:tag_id,:_destroy]) 
   end
+
 end

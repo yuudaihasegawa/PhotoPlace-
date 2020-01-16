@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
 
   namespace :public do
+    get '/map_request', to: 'maps#index', as: 'map_request'
     get 'homes/top'
     get 'homes/about'
     resources :users, only:[:show,:edit,:update,:destroy] do

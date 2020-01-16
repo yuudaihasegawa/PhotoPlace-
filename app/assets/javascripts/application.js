@@ -15,4 +15,9 @@
 //= require activestorage
 //= require turbolinks
 //= require cocoon
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require underscore
+//= require gmaps/google
 //= require_tree .

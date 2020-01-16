@@ -11,6 +11,7 @@
   <%= link_to edit_admin_post_path(@post) do %>
     <p>この投稿を編集する</p>
   <% end %>
+  <%= link_to "削除",admin_post_path(@post),method: :delete,"data-confirm" => "削除してしまってよろしいでしょうか？",class:"btn btn-danger Edit btn-rg" %>
 
   <table class="table table-striped">
     <thead>

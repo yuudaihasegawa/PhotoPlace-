@@ -14,9 +14,28 @@
  *= require_self
  */
 
+ @import "bootstrap";
+
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+
+}
+
+.clearfix::after {
+	content:"";
+	display: block;
+	clear: both;
+}
 
 header {
   margin-bottom:30px;
+  height: 100px;
+
 }
 
 .navbar {
@@ -28,25 +47,26 @@ header {
   font-size: 30px;
 }
 
+.navbar-rigth {
+  color: rgb(255, 255, 255);
+
+}
+
 li {
-  list-style: none;
-  margin: auto;
-  color: rgb(250, 2, 2);
+  color: rgba(250, 2, 2, 0);
+  margin: 30px;
 }
 
-.example {
-  width: 25%;
-  float: left;
-    .example_image {
-    width:150px;
-    position:relative;
-    }
-    .example_image i {
-        position: absolute;
-        color: white;
-        top: 0;
-        right: 0;
-        background-color: #7FBFFF;
-  }
+
+.header_link {
+  margin-right: 20px;
 }
 
+#map{
+  height: 400px;
+}
+
+.form-group {
+  border: 1px solid rgb(0, 0, 0);
+  width: 100%;
+}

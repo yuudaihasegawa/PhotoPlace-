@@ -1,19 +1,22 @@
-<h1>投稿一覧</h1>
 
-
-
-<div class="example wow bounceInDown" data-wow-duration="0.5s" data-wow-delay="1s" data-wow-offset="10" data-wow-iteration="1">
-  <div class="example_image">
+<div class="col-md-12">
     <% @post.each do |post| %>
-      <%= link_to public_post_path(post) do %>
-        <% post.post_images.each do |image| %>
-          <%= attachment_image_tag image, :image, size: "50x50", fallback: "no_image.jpg" %>
-        <% end %>
-        <%= post.title %>
-        <%= post.content %>
-        <%= post.price %>
-        <%= post.address %> 
-      <% end %>
+        <div class="posts" >
+          <%= link_to public_post_path(post) do %>
+            <%= attachment_image_tag post.post_images.first, :image, size: "300x200", fallback: "no_image.jpg" %>
+            <div class="text-center">
+              <%= post.title %>
+            </div>
+            <div class="row">
+              <div class="text-left">
+                <%= post.user.name %>
+              </div>
+              <div class="text-rigth">
+                <%= post.favorites.count %> いいね
+              </div>
+            </div>
+          <% end %>
+        </div>
     <% end %>
   </div>
 </div>

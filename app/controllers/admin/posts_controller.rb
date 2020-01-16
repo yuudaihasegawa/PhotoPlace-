@@ -26,7 +26,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @delete = @post.title
     @post.destroy
-    redirect_to admin_posts_path, notice: "投稿タイトル#{@delete}を削除しました。"
+    redirect_to admin_posts_path, notice: "投稿タイトル『 #{@delete} 』を削除しました。"
   end
 
   private

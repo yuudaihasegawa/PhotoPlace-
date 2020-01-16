@@ -7,48 +7,74 @@
     <%# <meta charset="UTF-8">
     <link rel="stylesheet" href="css/skippr.css"> 
     <link rel="stylesheet" href="css/style.css">  %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="//maps.google.com/maps/api/js?key=AIzaSyDV3FrzOT8FZ7-zSj_SKFEPslqSdQNWQvo&callback=initMap"></script>
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+    <%# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDV3FrzOT8FZ7-zSj_SKFEPslqSdQNWQvo&callback=initMap" async defer></script> %>
     
   </head>
 
     <header class="navbar navbar-custom">
-      <div class="container">
-        <div class="collapse navbar-collapse" id="navbarEexample6">
-          <div class="navbar-left">
-            <h1>ロゴ</h1>
-          </div>
-          <% if admin_signed_in? %> 
-            <%= link_to "会員一覧", admin_users_path %>
-            <%= link_to "投稿一覧", admin_posts_path %>
-            <%# <%= link_to "MAP", admin_maps_path %> 
-            <%= link_to "TOP", admin_homes_top_path %>
-            <%= link_to "タグ一覧", admin_tags_path %>
-            <%= link_to "log out", destroy_admin_session_path,method: :delete %>
             
-          <% elsif user_signed_in? %> 
-            <%= link_to public_user_path(current_user.id) do %>
-              <% current_user.name %>
-            <% end %>
-            <%= link_to "投稿一覧", public_posts_path %>
-            <%# <%= link_to "MAP",  %>
-            <%= link_to "Log out",destroy_user_session_path, method: :delete %>
-            <%= link_to "投稿",new_public_user_post_path(current_user) %>
-
-          <% else %> 
-            <%= link_to "ABOUT", public_homes_about_path %>
-            <%= link_to "TOP", public_homes_top_path %>
-            <%= link_to "Log in",  new_user_session_path %>
-            <%= link_to "Sign up", new_user_registration_path %>
+          <h1>ロゴ</h1>
+          <nav class="nav navbar-expand-lg navbar-right">
+            <% if admin_signed_in? %>
+              <li>
+                <%= link_to "会員一覧", admin_users_path %>
+              </li>
+              <li>
+                <%= link_to "投稿一覧", admin_posts_path %>
+              </li>
+              <%# <%= link_to "MAP", admin_maps_path %>
+              <li>
+                <%= link_to "TOP", admin_homes_top_path %>
+              </li>
+              <li>
+                <%= link_to "タグ一覧", admin_tags_path %>
+              </li>
+              <li>
+                <%= link_to "log out", destroy_admin_session_path,method: :delete %>
+              </li>
+            <% elsif user_signed_in? %> 
+              <li>
+                <%= link_to public_user_path(current_user.id) do %>
+                  <% current_user.name %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "投稿一覧", public_posts_path %>
+              </li>
+              <%# <%= link_to "MAP",  %>
+              <li>
+                <%= link_to "Log out",destroy_user_session_path, method: :delete %>
+              </li>
+              <li>
+                <%= link_to "投稿",new_public_user_post_path(current_user) %>
+              </li>
+            <% else %> 
+              <li>
+                <%= link_to "ABOUT", public_homes_about_path %>
+              </li>
+              <li>
+                <%= link_to "TOP", public_homes_top_path %>
+              </li>
+              <li>
+                <%= link_to "Log in",  new_user_session_path %>
+              </li>
+              <li>
+                <%= link_to "Sign up", new_user_registration_path %>
+              <li>
+            <%  end %> 
+          </ul>
           
-          <%  end %> 
         </div>
-      <div>
+      </div>
       
     </header>
   <body>
-    
     <%= yield %>
+    
   </body>
 </html>

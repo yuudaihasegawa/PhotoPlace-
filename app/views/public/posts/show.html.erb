@@ -1,37 +1,80 @@
 
-  <% @post.post_images.each do |image| %>
-    <%= attachment_image_tag image, :image, size: "50x50", fallback: "no_image.jpg" %>
-  <% end %>
-  <%= @post.title %>
-  <%= @post.content %>
-  <%= @post.price %>
-  <%= @post.address %>
-
-  <%= form_for(@comment, url: public_post_comments_path(@post)) do |f| %>
-	    <%= f.text_area :content, rows:'5',placeholder: "コメントをここに" %>
-	    <%= f.submit "送信する" %>
-  <% end %>
-
-   <% if @post.favorited_by?(current_user) %>
-      <li>
-        <%= link_to public_post_favorites_path(@post), method: :delete do %>
-          <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-          <%= @post.favorites.count %> いいね
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="text-center">
+        <% @post.post_images.each do |image| %>
+          <%= attachment_image_tag image, :image, size: "750x500", fallback: "no_image.jpg" %>
         <% end %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to public_post_favorites_path(@post), method: :post do %>
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <%= @post.favorites.count %> いいね
-	      <% end %>
-      </li>
-    <% end %>
+        <h1><%= @post.title %></h1>
+        <p>投稿者コメント<br><%= @post.content %></p>
+        <p>住所:<%= @post.address %><p>
+        <div class="row">
+          <p class="col-md-5 text-center">¥<%= @post.price %></p>
+          <p class="col-md-2"></p>
+          <div class="col-md-5 text-center">
+            <% if @post.favorited_by?(current_user) %>
+                <%= link_to public_post_favorites_path(@post), method: :delete do %>
+                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                  <%= @post.favorites.count %> いいね
+                <% end %>
+            <% else %>
+                <%= link_to public_post_favorites_path(@post), method: :post do %>
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                  <%= @post.favorites.count %> いいね
+                <% end %>
+            <% end %>
+            <h1> <%= @post.latitude %></h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="map" style='width: 100%; height: 500px;'></div>
+            <script type="text/javascript">
+              handler = Gmaps.build('Google');
+              handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
+                markers = handler.addMarkers([
+                  {
+                      "lat": <%= @post.latitude %>,
+                      "lng": <%= @post.longitude %>,
+                  }
+                ]);
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+                handler.getMap().setZoom(17);
+              });
+            </script>
+        </div>
+      </div>
+    </div>
 
-  <% @post.comments.each do |comment| %>
-    <%= comment.content %>
-    <%= link_to public_user_path(comment.user.id) do %>
-      <%= comment.user.name %>
-    <% end %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-  <% end %>
+
+
+    <div class="col-md-3">
+          <%= form_for(@comment, url: public_post_comments_path(@post)) do |f| %>
+            <div class="form-group">
+              <%= f.text_area :content, rows:'3',placeholder: "コメントをここに" %> 
+              <div class="text-center">
+                <%= f.submit "送信する" %>
+              </div>
+            </div>
+          <% end %>
+        <h3>コメント一覧</h3>
+        <% @post.comments.each do |comment| %>
+          <div class="row">
+            <div class="text-left">
+              <%= link_to public_user_path(comment.user.id) do %>
+                <%= attachment_image_tag comment.user.profile_image, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
+              <% end %>
+            </div>
+            <div class="text-rigth">
+              <%= comment.content %>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+
