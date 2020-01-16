@@ -71,6 +71,5 @@ gem 'jquery-rails'
 gem 'cocoon'
 gem 'ransack'
 gem "pry-byebug"
-gem 'geocoder'
 gem 'gmaps4rails'
 

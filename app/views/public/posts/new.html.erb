@@ -6,6 +6,17 @@
 
 
 <h2>投稿</h2>
+<% if @post.errors.any? %>
+  <div class="error_explanation">
+	<h2><%= @post.errors.count %>errors prohibited this obj from being saved:</h2>
+	<ul>
+	  <% @post.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+	  <% end %>
+	</ul>
+  </div>
+<% end %>
+
 <%= form_for(@post, url: public_user_posts_path(@user)) do |f| %>
     <%= f.label :title %>
 		 <%= f.text_field :title, class:"form-control" %>

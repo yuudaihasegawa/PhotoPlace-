@@ -7,10 +7,13 @@ class Post < ApplicationRecord
   has_many :favorites
   has_many :comments
   has_many :purchases
+  has_many :post_tags 
 
   validates :title, length: { in: 1..30 }
   validates :content, length: { in: 1..150 }
   validates :address, length: { in: 1..50 }
+  # validates_associated :images
+  # validates :image_id, presence: true
 
   accepts_nested_attributes_for :post_images, allow_destroy: true
   accepts_nested_attributes_for :post_tags, allow_destroy: true

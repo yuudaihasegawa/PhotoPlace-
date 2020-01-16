@@ -3,12 +3,16 @@
   <div class="row">
     <div class="col-md-9">
       <div class="text-center">
-        <% @post.post_images.each do |image| %>
-          <%= attachment_image_tag image, :image, size: "750x500", fallback: "no_image.jpg" %>
-        <% end %>
         <h1><%= @post.title %></h1>
+        <% @post.post_images.each do |image| %>
+            <%= attachment_image_tag image, :image, size: "750x500", fallback: "no_image.jpg" %>
+        <% end %>
+        <div class="row">
+          <% @post.post_tags.each do |post_tag| %>
+            <%= post_tag.tag.name %>
+          <% end %>
+        </div>
         <p>投稿者コメント<br><%= @post.content %></p>
-        <p>住所:<%= @post.address %><p>
         <div class="row">
           <p class="col-md-5 text-center">¥<%= @post.price %></p>
           <p class="col-md-2"></p>
@@ -24,12 +28,12 @@
                   <%= @post.favorites.count %> いいね
                 <% end %>
             <% end %>
-            <h1> <%= @post.latitude %></h1>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
+          <p class="text-center">住所:<%= @post.address %><p>
           <div id="map" style='width: 100%; height: 500px;'></div>
             <script type="text/javascript">
               handler = Gmaps.build('Google');
@@ -37,7 +41,7 @@
                 markers = handler.addMarkers([
                   {
                       "lat": <%= @post.latitude %>,
-                      "lng": <%= @post.longitude %>,
+                      "lng": <%= @post.longitude %>
                   }
                 ]);
                 handler.bounds.extendWith(markers);

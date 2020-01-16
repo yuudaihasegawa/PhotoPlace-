@@ -1,11 +1,17 @@
 class Public::PostsController < ApplicationController
 
   def index
-    @post = Post.all.includes(:favorites,:post_images)
+    @posts = Post.all.includes(:favorites,:post_images)
+    @tags = Tag.all
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+
   end
 
   def show
     @post = Post.find(params[:id])
+    # @post_tag = PostTag.where(post_id: @post.id)
+    # @tag = Tag.where(id: @post_tag.tag_id)
     @comment = Comment.new
   end
   
@@ -22,6 +28,7 @@ class Public::PostsController < ApplicationController
   end
 
   def create
+    @tag = Tag.new
     @post = Post.new(post_params)
     @user = User.find(params[:user_id])
     @post.user_id = @user.id
