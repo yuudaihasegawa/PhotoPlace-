@@ -2,6 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// 会員詳細画面
 .user-show {
   padding: 10px;
+}
+
+.profile {
+  padding: 20px;
+}
+
+// edit画面
+.edit {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.confile {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.btn {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

@@ -1,53 +1,58 @@
 
-<div class="container">
+<div class="container profile">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <%= attachment_image_tag @user, :profile_image, size: "300x300", fallback: "no_image.jpg" %>
     </div>
-    <div class="col-md-5">
-      <h3 class="user-show"><%= @user.name %></h3>
-      <h3 class="user-show">Email：<%= @user.email %></h3>
-      <h3 class="user-show">自己紹介文：<%= @user.introduction %></h3>
-      <h3 class="user-show">チャージ金額<%= @user.pocket_money %>円</h3>
+    <div class="col-md-6">
+      <div class="text-left">
+        <h3 class="user-show">あなたの名前：<%= @user.name %></h3>
+        <h3 class="user-show">Email：<%= @user.email %></h3>
+        <div class="row">
+          <h4 class="user-show">自己紹介文：<%= @user.introduction %></h4>
+        </div>
+      </div>
     </div>
-    <div class="col-md-1">
-      <% if current_user.id == @user.id %>
-        <%= link_to "編集",edit_public_user_path(@user),class:"btn btn-info",role:"button" %>
-        <%= link_to "退会",public_user_users_confile_path(@user),class:"btn btn-danger",role:"button" %>
-      <% end %>
+    <div class="col-md-2">
+      <div class="text-center">
+        <% if current_user.id == @user.id %>
+          <div class="btn">
+            <%= link_to "プロフィール編集",edit_public_user_path(@user),class:"btn btn-info",role:"button" %>
+          </div>
+          <div class="btn">
+            <%= link_to "サイトを退会する",public_user_users_confile_path(@user),class:"btn btn-danger",role:"button" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
-
-
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>投稿写真</th>
-        <th>タイトル</th>
-        <th>値段</th>
-        <th>投稿場所</th>
-      </tr>
-    <thead>
-
+<div class="container">
+  <div class="col-md-12">
+    <div class="text-center">
+      <h2>自分の投稿</h2>
+    </div>
     <% @user.posts.each do |post| %>
-      <tbody>
-        <tr>
-          <th>
-            <%= attachment_image_tag post.post_images.first, :image, size: "50x50", fallback: "no_image.jpg" %>
-          </th>
-          <th>
+        <div class="posts" >
+          <%= attachment_image_tag post.post_images.first, :image, size: "200x180", fallback: "no_image.jpg" %>
+          <div class="text-center">
             <%= link_to public_post_path(post) do %>
               <%= post.title %>
             <% end %>
-          </th>
-          <th><%= post.price %></th>
-          <th><%= post.address %> </th>
-        </tr>
-      </tbody>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-center">
+              <%= post.price %>
+            </div>
+            <div class="col-md-6 text-center">
+              <%= post.favorites.count %>いいね
+            </div>
+          </div>
+        </div>
     <% end %>
-</table>
+  </div>
+</div>
 
 <% unless @posts.nil? %>
   <h2>いいね一覧</h2>
