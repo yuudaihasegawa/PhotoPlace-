@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
   $('.bxslider').bxSlider({
     auto: false,           // 自動スライド

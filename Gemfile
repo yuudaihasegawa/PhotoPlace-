@@ -74,3 +74,4 @@ gem "pry-byebug"
 gem 'gmaps4rails'
 gem 'bxslider-rails'
 
+
