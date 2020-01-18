@@ -3,9 +3,12 @@
     <div class="col-md-9">
       <div class="text-center">
         <h1><%= @post.title %></h1>
-        <% @post.post_images.each do |image| %>
-            <%= attachment_image_tag image, :image, size: "750x500", fallback: "no_image.jpg" %>
-        <% end %>
+        <ul class="bxslider">
+          <% @post.post_images.each do |image| %>
+              <%# <%= attachment_image_tag image, :image, size: "750x500", fallback: "no_image.jpg" %> 
+            <li><%= attachment_image_tag image, :image, size: "750x500" %></li>
+          <% end %>
+        </ul>
         <div class="row">
           <% @post.post_tags.each do |post_tag| %>
             <%= post_tag.tag.name %>
@@ -33,17 +36,17 @@
       </div>
     </div>
 
-
-
     <div class="col-md-3">
+        <div class="text-center">
           <%= form_for(@comment, url: public_post_comments_path(@post)) do |f| %>
             <div class="form-group">
-              <%= f.text_area :content, rows:'3',placeholder: "コメントをここに" %> 
+              <%= f.text_area :content,class:"text",placeholder: "コメントをここに" %> 
               <div class="text-center">
-                <%= f.submit "送信する" %>
+                <%= f.submit "送信する" ,class:"btn btn-secondary"%>
               </div>
             </div>
           <% end %>
+        </div>
         <h3>コメント一覧</h3>
         <% @post.comments.each do |comment| %>
           <div class="row">

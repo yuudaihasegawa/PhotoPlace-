@@ -5,43 +5,81 @@
 <% end %>
 
 
-<h2>投稿</h2>
+<h2 class="text-center">投稿</h2>
 <% if @post.errors.any? %>
   <div class="error_explanation">
 	<h2><%= @post.errors.count %>errors prohibited this obj from being saved:</h2>
-	<ul>
-	  <% @post.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-	  <% end %>
-	</ul>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
-
-<%= form_for(@post, url: public_user_posts_path(@user)) do |f| %>
-    <%= f.label :title %>
-		 <%= f.text_field :title, class:"form-control" %>
-
-    <%= f.label :content %>
-		<%= f.text_area :content, class:"form-control" %>
-
-    <%= f.label :price %>
-		<%= f.number_field :price, class:"form-control" %>
-
-    <%= f.fields_for :post_images do |t| %>
-      <%= render 'post_image_fields', f: t %>
+<div class="container">
+    <%= form_for(@post, url: admin_post_path) do |f| %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+          <%= f.label :title %>
+          <%= f.text_field :title, class:"form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <%= f.label :content %>
+            <%= f.text_area :content, class:"form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <%= f.label :price %>
+            <%= f.number_field :price, class:"form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <%= f.fields_for :post_images do |t| %>
+              <%= render 'post_image_fields', f: t %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association "写真を追加", f, :post_images %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <%= f.label :"住所"%>
+            <%= f.text_area :address, class:"form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <%= f.fields_for :post_tags do |t| %>
+              <%= render 'post_tag_fields', f: t %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association "タグを追加", f, :post_tags %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <%= f.submit "投稿する",class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-    <div class="links">
-      <%= link_to_add_association "写真を追加", f, :post_images %>
-    </div>
-    <%= f.label :"住所"%>
-    <%= f.text_area :address, class:"form-control" %>
-    
-    <%= f.fields_for :post_tags do |t| %>
-      <%= render 'post_tag_fields', f: t %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association "タグを追加", f, :post_tags %>
-    </div>
-    
-    <%= f.submit "投稿する",class:"btn btn-primary" %>
-<% end %>
+</div>

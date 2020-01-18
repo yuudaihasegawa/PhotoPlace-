@@ -72,4 +72,5 @@ gem 'cocoon'
 gem 'ransack'
 gem "pry-byebug"
 gem 'gmaps4rails'
+gem 'bxslider-rails'
 

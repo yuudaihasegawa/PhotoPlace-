@@ -1,25 +1,14 @@
 class Admin::PostsController < ApplicationController
 
   def index
-    @post = Post.all
+    @posts = Post.all
+    @tags = Tag.all
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
   end
 
   def show
     @post = Post.find(params[:id])
-  end
-
-  def edit
-    @post = Post.find(params[:id])
-  end
-
-  def update
-    @post = Post.find(params[:id])
-    if @post.update(post_params)
-      flash[:success] = '投稿内容を変更しました'
-      redirect_to admin_post_path(@post)
-    else
-      render :edit
-    end
   end
 
   def destroy

@@ -1,19 +1,2 @@
 <div id="map" style='width: 100%; height: 500px;'></div>
  
-  <script type="text/javascript">
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers([
-        {
-         <% @posts.each do |post| %>
-           "lat": <%= post.latitude %>,
-           "lng": <%= post.longitude %>,
-           "infowindow": '<p><%= post.title %></p><p><%= post.address %></p><p><%= link_to "この投稿情報をみる" ,public_post_path(post),target: "_blank" %></p>',
-         <% end %>
-        }
-      ]);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      handler.getMap().setZoom(17);
-    });
-  </script>

@@ -1,17 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center">
+        <h1><%= @post.title %></h1>
+        <ul class="bxslider">
+          <% @post.post_images.each do |image| %>
+              <%# <%= attachment_image_tag image, :image, size: "750x500", fallback: "no_image.jpg" %> 
+            <li class="text-center"><%= image_tag image.to_s %></li>
+          <% end %>
+        </ul>
+        <div class="row">
+          <% @post.post_tags.each do |post_tag| %>
+            <%= post_tag.tag.name %>
+          <% end %>
+        </div>
+        <p>投稿者コメント<br><%= @post.content %></p>
+        <div class="row">
+          <p class="col-md-5 text-center">¥<%= @post.price %></p>
+          <p class="col-md-2"></p>
+          <div class="col-md-5 text-center">
+            <%= @post.favorites.count %> いいね
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= link_to "削除",admin_post_path(@post),method: :delete,"data-confirm" => "削除してしまってよろしいでしょうか？",class:"btn btn-danger Edit btn-rg" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <%= link_to '地図アプリで開く', "https://www.google.com/maps/search/?api=1&query=#{@post.address}".html_safe, class: 'button' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <% @post.post_images.each do |image| %>
-    <%= attachment_image_tag image, :image, size: "50x50", fallback: "no_image.jpg" %>
-  <% end %>
-  <%= @post.title %>
-  <%= @post.content %>
-  <%= @post.price %>
-  <%= @post.address %>
-  <%= @post.favorites.count %> いいね
+  
 
-  <%= link_to edit_admin_post_path(@post) do %>
-    <p>この投稿を編集する</p>
-  <% end %>
-  <%= link_to "削除",admin_post_path(@post),method: :delete,"data-confirm" => "削除してしまってよろしいでしょうか？",class:"btn btn-danger Edit btn-rg" %>
 
   <table class="table table-striped">
     <thead>

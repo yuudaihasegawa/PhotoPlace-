@@ -25,11 +25,11 @@
 }
 
 .posts {
-float: left;
-border: 2px solid black;
-background-color: bisque;
-margin: 10px;
-padding: 3px;
+  float: left;
+  border: 2px solid black;
+  background-color: bisque;
+  margin: 10px;
+  padding: 3px;
 }
 
 .col-md-3 {
@@ -41,6 +41,10 @@ border: 2px solid whitesmoke;
   }
 
 .form-group {
-  border: 1px solid rgb(0, 0, 0);
   width: 100%;
+}
+
+.text {
+  width: 100%;
+  height: 100px;
 }

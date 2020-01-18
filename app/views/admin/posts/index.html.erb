@@ -1,31 +1,47 @@
 <% if flash[:notice] %>
         <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
 <% end %>
-
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>投稿写真</th>
-        <th>タイトル</th>
-        <th>値段</th>
-        <th>投稿場所</th>
-      </tr>
-    <thead>
-
-    <% @post.each do |post| %>
-      <tbody>
-        <tr>
-          <th>
-              <%= attachment_image_tag post.post_images.first, :image, size: "50x50", fallback: "no_image.jpg" %>
-          </th>
-          <th>
-            <%= link_to admin_post_path(post) do %>
-              <%= post.title %>
-            <% end %>
-          </th>
-          <th><%= post.price %></th>
-          <th><%= post.address %> </th>
-        </tr>
-      </tbody>
+<div class="container">
+  <div class="text-center">
+    <%= search_form_for(@q, url:admin_posts_path) do |f| %>
+      <%= f.label :title, "Keyword" %>
+      <%= f.search_field :title_cont %>
+      <%= f.submit "検索" ,class:"btn btn-secondary"%>
     <% end %>
-</table>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+      <div class="text-center">
+        <h3>タグ</h3>
+      </div>
+      <% @tags.each do |tag| %>
+        <div class="tags text-center">
+          <%# <%= link_to %>
+            <%= tag.name %>
+            (<%= tag.post_tags.count %>)
+          <%# <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-11">
+      <% @posts.each do |post| %>
+          <div class="posts" >
+            <%= link_to admin_post_path(post) do %>
+              <%= attachment_image_tag post.post_images.first, :image, size: "220x180", fallback: "no_image.jpg" %>
+            <% end %>
+            <div class="text-center">
+              <%= post.title %>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                  <%= post.user.name %>
+                </div>
+                <div class="col-md-6 text-center">
+                  <%= post.favorites.count %> いいね
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

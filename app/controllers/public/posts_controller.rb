@@ -5,7 +5,6 @@ class Public::PostsController < ApplicationController
     @tags = Tag.all
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
-
   end
 
   def show

@@ -1,9 +1,12 @@
+<% if flash[:notice] %>
+        <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
+<% end %>
 <div class="container">
   <div class="text-center">
     <%= search_form_for(@q, url:public_posts_path) do |f| %>
       <%= f.label :title, "Keyword" %>
       <%= f.search_field :title_cont %>
-      <%= f.submit "検索" %>
+      <%= f.submit "検索" ,class:"btn btn-secondary"%>
     <% end %>
   </div>
   <div class="row">

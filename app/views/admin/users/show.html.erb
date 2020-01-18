@@ -1,44 +1,60 @@
-<%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpg" %>
-<h3><%= @user.name %></h3>
-<h3>Email：<%= @user.email %></h3>
-<h3>自己紹介文：<%= @user.introduction %></h3>
-<h2>チャージ金額<%= @user.pocket_money %>円</h2>
 
-<%= link_to edit_admin_user_path(@user) do %>
-  <p>会員の情報を編集する</p>
-<% end %>
-<%= link_to admin_user_path(@user),method: :delete do %>
-  <p>この会員を強制退会</p>
-<% end %>
-
-
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>投稿写真</th>
-        <th>タイトル</th>
-        <th>値段</th>
-        <th>投稿場所</th>
-      </tr>
-    <thead>
-
-    <% @user.posts.each do |post| %>
-      <tbody>
-        <tr>
-          <th>
-            <% post.post_images.each do |image| %>
-              <%= attachment_image_tag image, :image, size: "50x50", fallback: "no_image.jpg" %>
+<div class="container profile">
+  <div class="row">
+    <div class="col-md-4">
+      <%= attachment_image_tag @user, :profile_image, size: "300x300", fallback: "no_image.jpg" %>
+    </div>
+    <div class="col-md-6">
+      <div class="text-left">
+        <h3 class="user-show">あなたの名前：<%= @user.name %></h3>
+        <h3 class="user-show">Email：<%= @user.email %></h3>
+        <div class="row">
+          <h4 class="user-show">自己紹介文：<%= @user.introduction %></h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="text-center">
+        <% if current_user.id == @user.id %>
+          <div class="btn">
+            <%= link_to edit_admin_user_path(@user),class:"btn btn-info",role:"button" do %>
+              <p>会員情報を<br>編集</p>
             <% end %>
-          </th>
-          <th>
+          </div>
+          <div class="btn">
+            <%= link_to admin_user_path(@user),method: :delete,class:"btn btn-danger",role:"button" do %>
+              <p>会員を<br>強制退会</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-md-12">
+    <div class="text-center">
+      <h2>会員の投稿</h2>
+    </div>
+    <% @user.posts.each do |post| %>
+        <div class="posts" >
+          <%= attachment_image_tag post.post_images.first, :image, size: "200x180", fallback: "no_image.jpg" %>
+          <div class="text-center">
             <%= link_to admin_post_path(post) do %>
               <%= post.title %>
             <% end %>
-          </th>
-          <th><%= post.price %></th>
-          <th><%= post.address %> </th>
-        </tr>
-      </tbody>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-center">
+              <%= post.price %>
+            </div>
+            <div class="col-md-6 text-center">
+              <%= post.favorites.count %>いいね
+            </div>
+          </div>
+        </div>
     <% end %>
-</table>
+  </div>
+</div>
 
