@@ -26,7 +26,7 @@
     <div class="col-md-11">
       <% @posts.each do |post| %>
           <div class="posts" >
-            <%= link_to public_post_path(post) do %>
+            <%= link_to public_post_path(post), data: {"turbolinks" => false} do %>
               <%= attachment_image_tag post.post_images.first, :image, size: "220x180", fallback: "no_image.jpg" %>
             <% end %>
             <div class="text-center">

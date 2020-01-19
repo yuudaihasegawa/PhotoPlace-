@@ -14,6 +14,8 @@ class Post < ApplicationRecord
   validates :address, length: { in: 1..50 }
   # validates_associated :images
   # validates :image_id, presence: true
+  geocoded_by :address
+  after_validation :geocode
 
   accepts_nested_attributes_for :post_images, allow_destroy: true
   accepts_nested_attributes_for :post_tags, allow_destroy: true

@@ -1,7 +1,7 @@
 class Public::MapsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:favorites,:post_images)
   end
 
   def map

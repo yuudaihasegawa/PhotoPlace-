@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   validates :name, length: { in: 1..30 }
   # validates :introduction, length: { in: 0..150 }
+  
 
   attachment :profile_image
 
