@@ -10,10 +10,9 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  has_many :chages
+
   has_many :comments
   has_many :favorites
-  has_many :purchases
   has_many :posts
   
   acts_as_paranoid

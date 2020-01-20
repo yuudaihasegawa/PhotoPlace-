@@ -2,6 +2,8 @@ class Public::MapsController < ApplicationController
 
   def index
     @posts = Post.all.includes(:favorites,:post_images)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
   end
 
   def map

@@ -30,7 +30,6 @@ Rails.application.routes.draw do
     get 'homes/about'
     resources :users, only:[:show,:edit,:update,:destroy] do
       get 'users/confile'
-      resource :chages, only:[:create,:new]
       resources :posts, only:[:new,:create]
       resources :tags, only:[:create]
     end
@@ -38,7 +37,6 @@ Rails.application.routes.draw do
       resources :tags, only:[:new]
       resource :favorites, only:[:create,:destroy]
       resources :comments, only:[:create,:destroy]
-      resource :purchases, only:[:create]
       resources :post_tags, only:[:create,:destroy]
     end
     resources :homes, only:[:top,:about]

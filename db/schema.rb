@@ -24,14 +24,6 @@ ActiveRecord::Schema.define(version: 2020_01_09_100436) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "chages", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "chage_price", default: 0
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -78,15 +70,6 @@ ActiveRecord::Schema.define(version: 2020_01_09_100436) do
     t.datetime "updated_at", null: false
     t.index ["address"], name: "index_posts_on_address"
     t.index ["title"], name: "index_posts_on_title"
-  end
-
-  create_table "purchases", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
-    t.integer "price"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|

@@ -6,7 +6,6 @@ class Post < ApplicationRecord
   has_many :post_tags
   has_many :favorites
   has_many :comments
-  has_many :purchases
   has_many :post_tags 
 
   validates :title, length: { in: 1..30 }

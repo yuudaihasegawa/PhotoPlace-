@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all.includes(:favorites,:post_images)
-    @tags = Tag.all.order()
+    @tags = Tag.all
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
   end
