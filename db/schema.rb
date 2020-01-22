@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 2020_01_09_100436) do
     t.string "profile_image_id"
     t.string "name"
     t.text "introduction"
-    t.integer "pocket_money", default: 0
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
