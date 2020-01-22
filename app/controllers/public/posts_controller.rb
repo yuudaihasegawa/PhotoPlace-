@@ -1,13 +1,15 @@
 class Public::PostsController < ApplicationController
 
   # autocomplete :tag, :name
+  PER = 1
 
   def index
     @posts = Post.all.includes(:favorites,:post_images)
+    @posts = @posts.page(params[:page]).per(30)
     @tags = Tag.all
     # 投稿検索
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
+    @posts = @q.result(distinct: true).page(params[:page]).per(30)
     @q.build_condition if @q.conditions.empty?
     # タグ検索
     @tag_search = Tag.ransack(params[:q])

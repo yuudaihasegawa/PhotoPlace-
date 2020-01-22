@@ -9,30 +9,34 @@
           <% end %>
         </ul>
         <div class="row">
-          <% @post.post_tags.each do |post_tag| %>
-            <%= post_tag.tag.name %>
-          <% end %>
-        </div>
-        <p>投稿者コメント<br><%= @post.content %></p>
-        <div class="row">
-          <p class="col-md-5 text-center">¥<%= @post.price %></p>
-          <p class="col-md-2"></p>
-          <div class="col-md-5 text-center">
+          <div class="post-show col-md-8">
+            <div class="text-center">
+              <% @post.post_tags.each do |post_tag| %>
+                <%= post_tag.tag.name %>
+              <% end %>
+            </div>
+          </div>
+          <div class="post-show col-md-4">
             <% if @post.favorited_by?(current_user) %>
-                <%= link_to public_post_favorites_path(@post), method: :delete do %>
-                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                  <%= @post.favorites.count %> いいね
-                <% end %>
+              <%= link_to public_post_favorites_path(@post),data: {"turbolinks" => false}, method: :delete do %>
+                <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                <%= @post.favorites.count %> いいね
+              <% end %>
             <% else %>
-                <%= link_to public_post_favorites_path(@post), method: :post do %>
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                  <%= @post.favorites.count %> いいね
-                <% end %>
+              <%= link_to public_post_favorites_path(@post),data: {"turbolinks" => false}, method: :post do %>
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <%= @post.favorites.count %> いいね
+              <% end %>
             <% end %>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12">
+          <div class="post-show content col-md-12">
+            <p>投稿者コメント<br><%= @post.content %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 post-show">
             <p class="text-center">住所:<%= @post.address %><p>
             <div id="map" style='width: 100%; height: 500px;'></div>
             <script type="text/javascript">

@@ -1,26 +1,10 @@
 <% if flash[:notice] %>
-        <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
+        <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>
 <% end %>
 <div class="container">
-  <div class="text-center">
-    <%= search_form_for(@q,html: {class: 'hogehoge'} , url:public_posts_path) do |f| %>
-      <%= f.condition_fields do |c| %>
-        <%= c.attribute_fields do |a| %>
-          <%= a.attribute_select associations: [] %>
-        <% end %>
-        <%= c.hidden_field :p, value: "cont" %>
-        <%= c.value_fields do |v| %>
-          <%= v.search_field :value, placeholder: '検索ワードを入力' %>
-        <% end %>
-      <% end %>
-      <%= f.submit "検索" ,class:"btn btn-secondary"%>
-    <% end %>
-  </div>
   <div class="row">
-    <div class="col-md-1 tag-search">
-      <div class="text-center">
-        <h3>タグ一覧</h3>
-      </div>
+    <div class="col-md-2 tag-search">
+      <h4 class="text-center">タグ</h4>
       <div class="text-center">
         <%= search_form_for(@tag_search, url:public_posts_path) do |f| %>
           <%= f.label :name, "タグ名" %>
@@ -28,38 +12,61 @@
           <%= f.submit "検索" ,class:"btn btn-secondary"%>
         <% end %>
       </div>
-      <div class="text-center">
-        <% @tags.each do |tag| %>
+      <% @tags.each do |tag| %>
+        <div class="row">
+          <div class="text-center">
             <%= link_to public_tag_path(tag) do %>
               <%= tag.name %>
               (<%= tag.post_tags.count %>)
             <% end %>
-        <% end %>
-      </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class="col-md-11">
-      <% @posts.each do |post| %>
-          <div id="posts" >
-            <div class="post_image">
-              <%= link_to public_post_path(post), data: {"turbolinks" => false} do %>
-                <%= attachment_image_tag post.post_images.first, :image, size: "300x200",class:"image", fallback: "no_image.jpg" %>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <%= search_form_for(@q,html: {class: 'hogehoge'} , url:public_posts_path) do |f| %>
+              <%= f.condition_fields do |c| %>
+                <%= c.attribute_fields do |a| %>
+                  <%= a.attribute_select associations: [] %>
+                <% end %>
+                <%= c.hidden_field :p, value: "cont" %>
+                <%= c.value_fields do |v| %>
+                  <%= v.search_field :value, placeholder: '検索ワードを入力' %>
+                <% end %>
               <% end %>
-            </div>
-            <div class="post_text">
-              <div class="text-center">
-                <%= post.title %>
+              <%= f.submit "検索" ,class:"btn btn-secondary"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <% @posts.each do |post| %>
+            <div id="posts">
+              <div class="post_image">
+                <%= link_to public_post_path(post), data: {"turbolinks" => false} do %>
+                  <%= attachment_image_tag post.post_images.first, :image, size: "300x200",class:"image", fallback: "no_image.jpg" %>
+                <% end %>
               </div>
-              <div class="row">
+              <div class="post_text">
+                <div class="text-center">
+                  <%= post.title %>
+                </div>
+                <div class="row">
                   <div class="col-md-6 text-center">
                     <%= post.user.name %>
                   </div>
                   <div class="col-md-6 text-center">
                     <%= post.favorites.count %> いいね
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-      <% end %>
+        <% end %>
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
 </div>

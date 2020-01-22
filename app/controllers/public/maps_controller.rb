@@ -4,6 +4,7 @@ class Public::MapsController < ApplicationController
     @posts = Post.all.includes(:favorites,:post_images)
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
+    @q.build_condition if @q.conditions.empty?
   end
 
   def map

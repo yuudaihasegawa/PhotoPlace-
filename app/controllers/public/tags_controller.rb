@@ -8,6 +8,9 @@ class Public::TagsController < ApplicationController
     @post_tags.each do |post_tag|
       @posts << Post.find_by(id: post_tag.post_id)
     end
+    # タグ検索
+    @tag_search = Tag.ransack(params[:q])
+    @tags = @tag_search.result(distinct: true)
   end
 
 

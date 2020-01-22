@@ -6,8 +6,9 @@ class Public::UsersController < ApplicationController
     @favorite = Favorite.where(user_id: @user.id)
     @posts = []
     @favorite.each do |favo|
-      @posts << Post.where(id: favo.post_id)
+      @posts << Post.where(id: favo.post_id).includes(:post_images)
     end
+    @posts.flatten!
   end
 
   def edit
