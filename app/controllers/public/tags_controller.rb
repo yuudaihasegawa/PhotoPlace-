@@ -1,5 +1,16 @@
 class Public::TagsController < ApplicationController
 
+  def show
+    @tags = Tag.all
+    @tag = Tag.find(params[:id])
+    @post_tags = PostTag.where(tag_id: @tag.id)
+    @posts = []
+    @post_tags.each do |post_tag|
+      @posts << Post.find_by(id: post_tag.post_id)
+    end
+  end
+
+
   def new
     @post = Post.find(params[:post_id])
     @tag= Tag.new

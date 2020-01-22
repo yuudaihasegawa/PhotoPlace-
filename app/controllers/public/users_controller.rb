@@ -4,8 +4,9 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @favorite = Favorite.where(user_id: @user.id)
+    @posts = []
     @favorite.each do |favo|
-      @posts = Post.where(id: favo.post_id)
+      @posts << Post.where(id: favo.post_id)
     end
   end
 

@@ -11,6 +11,53 @@
   padding: 20px;
 }
 
+// post_index
+#posts {
+  float: left;
+  position: relative;
+  display: block;
+  width: 25%;
+  margin: 10px auto;
+  color: #ffffff;
+  border: 1px solid #a8aabc;
+  overflow: hidden;
+
+  .post_image {
+    position: relative;
+    height: 200px;
+  }
+
+  .image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .post_text {
+    height: 25%;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    padding-bottom: 28px;
+    color: #ffffff;
+    background-color: rgba(0,0,0,0.5);
+    transition: 0.5s;
+    transform: translateY(100%);
+  }
+
+  &:hover {
+    .hide {
+      transform: translateY(0);
+    }
+    .post_text {
+      top: 50%;
+      color: #ffffff;
+    }
+  }
+}
+
 // edit画面
 .edit {
   padding: 20px;

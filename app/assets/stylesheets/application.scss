@@ -36,7 +36,8 @@ body{
 header {
   margin-bottom:30px;
   height: 100px;
-
+  background-image: url(header.jpg);
+  // opacity: 0.8;
 }
 
 // sign up、log in画面
@@ -78,4 +79,13 @@ li {
 
 #container{
   height: 500px;
+}
+
+footer{
+  background-image: url(footer.jpg);
+  height: 50px;
+}
+
+.footer-text{
+  color: white;
 }

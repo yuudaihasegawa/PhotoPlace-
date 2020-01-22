@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get '/map_request', to: 'maps#index', as: 'map_request'
     get 'homes/top'
     get 'homes/about'
+
     resources :users, only:[:show,:edit,:update,:destroy] do
       get 'users/confile'
       resources :posts, only:[:new,:create]
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
     end
     resources :homes, only:[:top,:about]
     resources :maps, only:[:index]
+    resources :tags, only:[:show]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
