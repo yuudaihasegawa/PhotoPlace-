@@ -3,25 +3,39 @@
 <% end %>
 <div class="container">
   <div class="text-center">
-    <%= search_form_for(@q, url:public_posts_path) do |f| %>
-      <%= f.label :title, "Keyword" %>
-      <%= f.search_field :title_cont %>
+    <%= search_form_for(@q,html: {class: 'hogehoge'} , url:public_posts_path) do |f| %>
+      <%= f.condition_fields do |c| %>
+        <%= c.attribute_fields do |a| %>
+          <%= a.attribute_select associations: [] %>
+        <% end %>
+        <%= c.hidden_field :p, value: "cont" %>
+        <%= c.value_fields do |v| %>
+          <%= v.search_field :value, placeholder: '検索ワードを入力' %>
+        <% end %>
+      <% end %>
       <%= f.submit "検索" ,class:"btn btn-secondary"%>
     <% end %>
   </div>
   <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-1 tag-search">
       <div class="text-center">
-        <h3>タグ</h3>
+        <h3>タグ一覧</h3>
       </div>
-      <% @tags.each do |tag| %>
-        <div class="tags text-center">
-          <%= link_to public_tag_path(tag) do %>
-            <%= tag.name %>
-            (<%= tag.post_tags.count %>)
-          <% end %>
-        </div>
-      <% end %>
+      <div class="text-center">
+        <%= search_form_for(@tag_search, url:public_posts_path) do |f| %>
+          <%= f.label :name, "タグ名" %>
+          <%= f.search_field :name_cont %>
+          <%= f.submit "検索" ,class:"btn btn-secondary"%>
+        <% end %>
+      </div>
+      <div class="text-center">
+        <% @tags.each do |tag| %>
+            <%= link_to public_tag_path(tag) do %>
+              <%= tag.name %>
+              (<%= tag.post_tags.count %>)
+            <% end %>
+        <% end %>
+      </div>
     </div>
     <div class="col-md-11">
       <% @posts.each do |post| %>

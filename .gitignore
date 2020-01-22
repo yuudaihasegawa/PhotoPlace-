@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/config/initializers/geocoder.rb
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -13,7 +14,7 @@
 /db/seeds.rb
 
 # Ignore all logfiles and tempfiles.
-/log/*
+/log/*えいかえいか
 /tmp/*
 !/log/.keep
 !/tmp/.keep

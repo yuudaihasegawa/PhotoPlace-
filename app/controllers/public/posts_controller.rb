@@ -5,8 +5,13 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all.includes(:favorites,:post_images)
     @tags = Tag.all
+    # 投稿検索
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
+    @q.build_condition if @q.conditions.empty?
+    # タグ検索
+    @tag_search = Tag.ransack(params[:q])
+    @tags = @tag_search.result(distinct: true)
   end
 
   def show
