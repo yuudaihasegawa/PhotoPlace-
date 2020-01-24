@@ -1,6 +1,11 @@
 class Public::PostsController < ApplicationController
 
-  before_action :authenticate_public!
+  before_action :corrent_public, only: [:create,:destroy]
+  def corrent_public
+    unless public_signed_in? 
+      redirect_to new_user_registration_path
+    end
+  end
 
   # autocomplete :tag, :name
   PER = 1
@@ -90,10 +95,6 @@ class Public::PostsController < ApplicationController
     end
   end
 
-
-  def update
-
-  end
 
   def destroy
     

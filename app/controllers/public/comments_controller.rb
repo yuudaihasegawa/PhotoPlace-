@@ -1,5 +1,12 @@
 class Public::CommentsController < ApplicationController
 
+  before_action :corrent_public, only: [:create]
+  def corrent_public
+    unless public_signed_in? 
+      redirect_to new_user_registration_path
+    end
+  end
+
   def create
     @post = Post.find(session[:post_id])
     @comment = current_user.comments.new(comment_params)

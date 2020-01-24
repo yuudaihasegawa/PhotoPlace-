@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="text-center">
-            <%= search_form_for(@q,html: {class: 'hogehoge'} , url:public_posts_path) do |f| %>
+            <%= search_form_for(@q,html: {class: 'post_pulldown'} , url:public_posts_path) do |f| %>
               <%= f.condition_fields do |c| %>
                 <%= c.attribute_fields do |a| %>
                   <%= a.attribute_select associations: [] %>

@@ -1,6 +1,6 @@
 class Public::MapsController < ApplicationController
 
-  before_action :authenticate_public!
+
 
   def index
     @posts = Post.all.includes(:favorites,:post_images)

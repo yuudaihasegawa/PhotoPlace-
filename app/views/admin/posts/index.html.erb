@@ -2,46 +2,68 @@
         <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
 <% end %>
 <div class="container">
-  <div class="text-center">
-    <%= search_form_for(@q, url:admin_posts_path) do |f| %>
-      <%= f.label :title, "Keyword" %>
-      <%= f.search_field :title_cont %>
-      <%= f.submit "検索" ,class:"btn btn-secondary"%>
-    <% end %>
-  </div>
   <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-2 tag-search">
+      <h4 class="text-center">タグ</h4>
       <div class="text-center">
-        <h3>タグ</h3>
+        <%= search_form_for(@tag_search, url:admin_posts_path) do |f| %>
+          <%= f.label :name, "タグ名" %>
+          <%= f.search_field :name_cont %>
+          <%= f.submit "検索" ,class:"btn btn-secondary"%>
+        <% end %>
       </div>
       <% @tags.each do |tag| %>
-        <div class="tags text-center">
-          <%# <%= link_to %>
-            <%= tag.name %>
-            (<%= tag.post_tags.count %>)
-          <%# <% end %>
+        <div class="row">
+          <div class="text-center">
+            <%= link_to admin_tag_path(tag) do %>
+              <%= tag.name %>
+              (<%= tag.post_tags.count %>)
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
-    <div class="col-md-11">
-      <% @posts.each do |post| %>
-          <div class="posts" >
-            <%= link_to admin_post_path(post) do %>
-              <%= attachment_image_tag post.post_images.first, :image, size: "220x180", fallback: "no_image.jpg" %>
+    <div class="col-md-10">
+      <div class="text-center">
+        <%= search_form_for(@q,html: {class: 'post_pulldown'} , url:admin_posts_path) do |f| %>
+          <%= f.condition_fields do |c| %>
+            <%= c.attribute_fields do |a| %>
+              <%= a.attribute_select associations: [] %>
             <% end %>
-            <div class="text-center">
-              <%= post.title %>
-            </div>
-            <div class="row">
-                <div class="col-md-6 text-center">
-                  <%= post.user.name %>
+            <%= c.hidden_field :p, value: "cont" %>
+            <%= c.value_fields do |v| %>
+              <%= v.search_field :value, placeholder: '検索ワードを入力' %>
+            <% end %>
+          <% end %>
+          <%= f.submit "検索" ,class:"btn btn-secondary"%>
+        <% end %>
+        <div class="row">
+          <div class="col-md-12">
+            <% @posts.each do |post| %>
+              <div id="posts">
+                <div class="post_image">
+                  <%= link_to admin_post_path(post) do %>
+                    <%= attachment_image_tag post.post_images.first, :image, size: "300x200", fallback: "no_image.jpg" %>
+                  <% end %>
                 </div>
-                <div class="col-md-6 text-center">
-                  <%= post.favorites.count %> いいね
+                <div class="post_text">
+                  <div class="text-center">
+                    <%= post.title %>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 text-center">
+                      <%= post.user.name %>
+                    </div>
+                    <div class="col-md-6 text-center">
+                      <%= post.favorites.count %> いいね
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            <% end %>
           </div>
-      <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

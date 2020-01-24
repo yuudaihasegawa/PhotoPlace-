@@ -1,6 +1,6 @@
 class Public::TagsController < ApplicationController
 
-  before_action :authenticate_public!
+
 
   def show
     @tags = Tag.all
@@ -22,17 +22,6 @@ class Public::TagsController < ApplicationController
     @post_tag = PostTag.new
   end
 
-  def create
-    @user = User.find(params[:user_id])
-    @tag = Tag.new(tag_params)
-    if @tag.save
-      flash[:success] = '新しくタグを作りました'
-      redirect_to new_public_user_post_path(@user)
-    else
-      render template: "public/users/posts/new"
-    end
-
-  end
 
   private
 

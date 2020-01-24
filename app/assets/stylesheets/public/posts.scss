@@ -32,7 +32,7 @@
   width: 300px;
   margin: 10px auto;
   color: #ffffff;
-  border: 1px solid #a8aabc;
+  // border: 1px solid #a8aabc;
   overflow: hidden;
 
   .post_image {
@@ -74,7 +74,7 @@
 
 
 .col-md-3 {
-border: 2px solid whitesmoke;
+// border: 2px solid whitesmoke;
 }
 
 .images {
@@ -99,9 +99,12 @@ border: 2px solid whitesmoke;
   padding: 20px;
 }
 
-.content {
-
+.post-comment{
+  padding: 10px;
+  overflow-wrap: break-word;
 }
+
+
 
 
 // .modal{

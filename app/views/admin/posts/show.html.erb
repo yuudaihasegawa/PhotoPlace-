@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
       <div class="text-center">
         <h1><%= @post.title %></h1>
         <ul class="bxslider">
@@ -9,58 +9,67 @@
           <% end %>
         </ul>
         <div class="row">
-          <% @post.post_tags.each do |post_tag| %>
-            <%= post_tag.tag.name %>
-          <% end %>
-        </div>
-        <p>投稿者コメント<br><%= @post.content %></p>
-        <div class="row">
-          <p class="col-md-5 text-center">¥<%= @post.price %></p>
-          <p class="col-md-2"></p>
-          <div class="col-md-5 text-center">
+          <div class="post-show col-md-8 text-center">
+            <% @post.post_tags.each do |post_tag| %>
+              <%= post_tag.tag.name %>
+            <% end %>
+          </div>
+          <div class="post-show col-md-2 text-center">
             <%= @post.favorites.count %> いいね
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
+           <div class="post-show col-md-2 text-center">
             <%= link_to "削除",admin_post_path(@post),method: :delete,"data-confirm" => "削除してしまってよろしいでしょうか？",class:"btn btn-danger Edit btn-rg" %>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12">
-            <div class="text-center">
-              <%= link_to '地図アプリで開く', "https://www.google.com/maps/search/?api=1&query=#{@post.address}".html_safe, class: 'button' %>
-            </div>
+          <div class="post-show content col-md-12">
+            <p>投稿者コメント<br><%= @post.content %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 post-show">
+            <p class="text-center">住所:<%= @post.address %><p>
+            <div id="map" style='width: 100%; height: 500px;'></div>
+            <script type="text/javascript">
+              handler = Gmaps.build('Google');
+              handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
+              markers = handler.addMarkers([
+              {
+              "lat": <%= @post.latitude %>,
+              "lng": <%= @post.longitude %>
+              }
+              ]);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+              handler.getMap().setZoom(17);
+              });
+            </script>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-md-3">
+      <div class="text-center">
+        <h3>コメント</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <% @post.comments.each do |comment| %>
+            <div class="row">
+              <div class="post-comment col-md-4 text-center">
+                <%= link_to admin_user_path(comment.user.id) do %>
+                  <%= attachment_image_tag comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
+                <% end %>
+              </div>
+              <div class="post-comment col-md-8">
+                <div class="text-center">
+                  <%= comment.content %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  
-
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>顔写真</th>
-        <th>会員名</th>
-        <th>コメント内容</th>
-      </tr>
-    <thead>
-
-    <% @post.comments.each do |comment| %>
-      <tbody>
-        <tr>
-          <th><%= attachment_image_tag comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg" %></th>
-          <th>
-            <%= link_to admin_user_path(comment.user.id) do %>
-              <%= comment.user.name %>
-            <% end %>
-          </th>
-          <th><%= comment.content %></th>
-          <th><%= comment.created_at.strftime('%Y/%m/%d') %></th>
-        </tr>
-      </tbody>
-    <% end %>
-</table>
+</div>
