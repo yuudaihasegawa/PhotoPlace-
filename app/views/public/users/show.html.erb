@@ -1,19 +1,20 @@
 
 <div class="container profile">
   <div class="row">
-    <div class="col-md-4">
-      <%= attachment_image_tag @user, :profile_image, size: "300x300", fallback: "no_image.jpg" %>
+    <div class="col-md-5">
+      <%= attachment_image_tag @user, :profile_image, size: "400x300", fallback: "no_image.jpg" %>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="text-left">
         <div class="row">
           <div class="col-md-12">
-            <h3 class="user-show">あなたの名前：<%= @user.name %></h3>
+            <h3 class="user-show text-center"><%= @user.name %></h3>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h4 class="user-show">自己紹介文：<%= @user.introduction %></h4>
+            <h3 class="user-show text-center">自己紹介文</h3>
+            <p class="user-introduction text-center"><%= @user.introduction %></p>
           </div>
         </div>
       </div>

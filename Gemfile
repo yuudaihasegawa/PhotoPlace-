@@ -74,4 +74,4 @@ gem "pry-byebug"
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'bxslider-rails'
-
+gem 'font-awesome-rails'

@@ -1,5 +1,7 @@
 class Public::TagsController < ApplicationController
 
+  before_action :authenticate_public!
+
   def show
     @tags = Tag.all
     @tag = Tag.find(params[:id])

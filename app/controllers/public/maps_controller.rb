@@ -1,10 +1,12 @@
 class Public::MapsController < ApplicationController
 
+  before_action :authenticate_public!
+
   def index
     @posts = Post.all.includes(:favorites,:post_images)
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
-    @q.build_condition if @q.conditions.empty?
+    # @q = Post.ransack(params[:q])
+    # @posts = @q.result(distinct: true)
+    # @q.build_condition if @q.conditions.empty?
   end
 
   def map

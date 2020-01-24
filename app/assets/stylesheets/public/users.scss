@@ -5,6 +5,13 @@
 // 会員詳細画面
 .user-show {
   padding: 10px;
+  width: 100%;
+}
+
+.user-introduction{
+  padding: 10px;
+  height: 100%;
+  overflow-wrap: break-word;
 }
 
 .profile {

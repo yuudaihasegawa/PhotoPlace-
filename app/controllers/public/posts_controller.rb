@@ -1,5 +1,7 @@
 class Public::PostsController < ApplicationController
 
+  before_action :authenticate_public!
+
   # autocomplete :tag, :name
   PER = 1
 
@@ -18,9 +20,11 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments.order(id: "DESC").page(params[:page]).per(30)
     # @post_tag = PostTag.where(post_id: @post.id)
     # @tag = Tag.where(id: @post_tag.tag_id)
-    @comment = Comment.new
+    session[:post_id] = @post.id
   end
   
   def new
@@ -45,7 +49,6 @@ class Public::PostsController < ApplicationController
     @new_tags = []
     @tags.each do |tag|
       @tag = Tag.find_by(name: tag[1][:name])
-          binding.pry
       if @tag.nil?
         #入っていない
         @new_tag = Tag.new

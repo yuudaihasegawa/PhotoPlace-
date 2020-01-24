@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     resources :posts, only:[:index,:show,:edit,:update,:destroy] do
       resources :tags, only:[:new]
       resource :favorites, only:[:create,:destroy]
-      resources :comments, only:[:create,:destroy]
+      resources :comments, only:[:new,:create,:destroy]
       resources :post_tags, only:[:create,:destroy]
     end
     resources :homes, only:[:top,:about]
