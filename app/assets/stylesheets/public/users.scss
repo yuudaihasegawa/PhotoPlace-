@@ -1,3 +1,125 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// 会員詳細画面
+.user-show {
+  padding: 10px;
+  width: 100%;
+}
+
+.user-introduction{
+  padding: 10px;
+  height: 100%;
+  overflow-wrap: break-word;
+}
+
+.profile {
+  padding: 20px;
+}
+
+.nav-tabs {
+  border-bottom:none;
+}
+//タブメニュー
+.wrap{
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+#tab-menu li {
+  float: left;
+  list-style-type: none;
+  width: 23%;
+}
+
+#tab-menu a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #000;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+#tab-menu .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents .tab {
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #000;
+  border-top: none;
+}
+ 
+#tab-contents p{
+  color:#000;
+  line-height: 2.5;
+}
+
+#posts {
+  float: left;
+  position: relative;
+  display: block;
+  width: 25%;
+  margin: 10px auto;
+  color: #ffffff;
+  border: 1px solid #000000;
+  overflow: hidden;
+
+  .post_image {
+    position: relative;
+    height: 200px;
+  }
+
+  .image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .post_text {
+    height: 25%;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    padding-bottom: 28px;
+    color: #ffffff;
+    background-color: rgba(0,0,0,0.5);
+    transition: 0.5s;
+    transform: translateY(100%);
+  }
+
+  &:hover {
+    .hide {
+      transform: translateY(0);
+    }
+    .post_text {
+      top: 50%;
+      color: #ffffff;
+    }
+  }
+}
+
+// edit画面
+.edit {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.confile {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.btn {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

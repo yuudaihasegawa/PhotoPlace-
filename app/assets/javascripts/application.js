@@ -12,7 +12,28 @@
 //
 //= require jquery
 //= require rails-ujs
+//= require bxslider
 //= require activestorage
 //= require turbolinks
 //= require cocoon
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require underscore
+//= require gmaps/google
 //= require_tree .
+
+
+// ページトップに戻るボタン
+$(function() {
+ 
+  $('#back').on('click',function(){
+    $('body, html').animate({
+      scrollTop:0
+    }, 800);
+      return false;
+  });
+ 
+});
+
+

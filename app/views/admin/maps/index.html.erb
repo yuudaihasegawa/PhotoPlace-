@@ -1,0 +1,100 @@
+
+<%# <div class="text-center">
+  <%= search_form_for(@q,html: {class: 'post_pulldown'},url:public_maps_path, data: {"turbolinks" => false} ) do |f| %>
+    <%# <%= f.condition_fields do |c| %> 
+      <%# <%= c.attribute_fields do |a| %> 
+        <%# <%= a.attribute_select associations: [] %> 
+      <%# <% end %>
+      <%# <%= c.hidden_field :p, value: "cont" %> 
+      <%# <%= c.value_fields do |v| %> 
+        <%# <%= v.search_field :value, placeholder: '検索ワードを入力' %> 
+      <%# <% end %> 
+    <%# <% end %> 
+    <%# <%= f.submit "検索" ,class:"btn btn-secondary"%> 
+  <%# <% end %> 
+<%# </div> %> 
+<!-- 地名入力用のinputを追加 -->
+<input id="address" type="textbox" value="Sydney, NSW">
+
+<!-- buttonをクリックしたらcodeAddressを実行-->
+<input type="button" value="Encode" onclick="codeAddress()">
+<div id="map" style="width: 100%; height: 800px;"></div>
+
+<!-- js部分 -->
+<script type="text/javascript">
+    
+    function initMap() {
+
+      //初期表示位置
+      var latlng = new google.maps.LatLng(34.41, 135.31);
+      //デザイン
+      var styles = [
+           {
+            stylers: [
+             { "saturation": -0 },
+             { "lightness": -0 }
+            ]
+           }
+          ];
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 9,
+          styles: styles,
+          center: latlng
+      });
+      var transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+
+      //複数マーカー ここから
+      <% @posts.each do |post| %>
+      (function(){
+        var contentString = '<div class="container">'+
+        '<%= attachment_image_tag post.post_images.first, :image, size: "250x200",class:"map_image", fallback: "no_image.jpg" %>'+
+        '<div class="row">'+
+        '<div class="col-md-4">'+
+        '<%= post.user.name %>'+
+        '</div>'+
+        '<div class="col-md-4">'+
+        '<%= post.favorites.count %>いいね'+
+        '</div>'+
+        '<div class="col-md-4">'+
+        '<%= link_to "詳細",admin_post_path(post), data: {"turbolinks" => false} %>'+
+        '</div>'+
+        '</div>'+
+        '</div>'; 
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+            
+            
+        });
+
+        var marker = new google.maps.Marker({
+            position:{lat: <%= post.latitude %>, lng: <%= post.longitude %>},
+            map: map,
+            title: contentString, //お好みのアイコンが無ければ、左のカンマを削除
+            icon: markerImg
+        });
+
+        var markerImg = new google.maps.MarkerImage( 
+          '<%= attachment_image_tag post.post_images.first, :image, size: "220x180", fallback: "no_image.jpg" %>',  //アイコンとして使う画像パスの指定   #1            
+          new google.maps.Size(137, 53), //アイコンの画像サイズ#2
+          new google.maps.Point(0, 0)//アイコンの位置
+        ); 
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+       })();
+      <% end %>
+      //複数マーカー ここまで  
+      
+      // https://qiita.com/krmbn0576/items/e9bc5384b790df9e39ab
+      var promise = Promise.reject(new Error('promise!!!'));
+      // これで抑制できる！！（後で見る人にとっては意味不明なのでコメントでこの記事のURLを貼っておこう）
+      promise.catch(function(e) {});
+
+      setTimeout(function() {promise.catch(/* 適切なエラーハンドル */);}, 1000);
+  }
+
+</script>
+

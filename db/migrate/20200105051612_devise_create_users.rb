@@ -34,7 +34,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :profile_image_id
       t.string :name, index: true
       t.text :introduction
-      t.integer :pocket_money, default: 0
       t.datetime :deleted_at
       t.timestamps null: false
     end

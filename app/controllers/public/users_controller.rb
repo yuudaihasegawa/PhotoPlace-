@@ -1,8 +1,20 @@
 class Public::UsersController < ApplicationController
-
+  
+  before_action :corrent_public, only: [:show,:edit,:confile,:create,:destroy]
+  def corrent_public
+    unless user_signed_in? 
+      redirect_to new_user_registration_path
+    end
+  end
 
   def show
     @user = User.find(params[:id])
+    @favorite = Favorite.where(user_id: @user.id)
+    @posts = []
+    @favorite.each do |favo|
+      @posts << Post.where(id: favo.post_id).includes(:post_images)
+    end
+    @posts.flatten!
   end
 
   def edit

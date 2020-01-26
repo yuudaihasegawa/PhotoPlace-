@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  root 'public/homes#top'
+  get 'public/homes/top'
+  get 'public/homes/about'
+  resources :homes, only:[:top,:about]
+
   devise_for :admins,controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -13,35 +18,33 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get 'homes/top'
+    get '/map_request', to: 'maps#index', as: 'map_request'
     resources :users, only:[:index,:edit,:update,:show,:destroy]
-    resources :posts, only:[:index,:show,:edit,:update,:destroy]
-    resources :tags, only:[:index,:edit,:update,:destroy]
+    resources :posts, only:[:index,:show,:destroy]
+    resources :tags, only:[:show,:destroy]
     resources :comment, only:[:edit,:update,:destroy]
     resources :maps, only:[:index]
-    resource :homes, only:[:top]
   end
 
 
 
   namespace :public do
-    get 'homes/top'
-    get 'homes/about'
+    get '/map_request', to: 'maps#index', as: 'map_request'
+
     resources :users, only:[:show,:edit,:update,:destroy] do
       get 'users/confile'
-      resource :chages, only:[:create,:new]
       resources :posts, only:[:new,:create]
       resources :tags, only:[:create]
     end
     resources :posts, only:[:index,:show,:edit,:update,:destroy] do
       resources :tags, only:[:new]
       resource :favorites, only:[:create,:destroy]
-      resources :comments, only:[:create,:destroy]
-      resource :purchases, only:[:create]
+      resources :comments, only:[:new,:create,:destroy]
       resources :post_tags, only:[:create,:destroy]
     end
-    resources :homes, only:[:top,:about]
+
     resources :maps, only:[:index]
+    resources :tags, only:[:show]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

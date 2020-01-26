@@ -4,11 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :name, length: { in: 1..30 }
+  # validates :introduction, length: { in: 0..150 }
+  
+
   attachment :profile_image
 
-  has_many :chages
-  has_many :comments
-  has_many :favorites
-  has_many :purchases
-  has_many :posts
+
+  has_many :comments ,dependent: :destroy
+  has_many :favorites ,dependent: :destroy
+  has_many :posts ,dependent: :destroy
+  
+  acts_as_paranoid
 end
