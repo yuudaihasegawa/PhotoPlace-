@@ -1,26 +1,5 @@
 
-<%# <div class="text-center">
-  <%= search_form_for(@q,html: {class: 'post_pulldown'},url:public_maps_path, data: {"turbolinks" => false} ) do |f| %>
-    <%# <%= f.condition_fields do |c| %> 
-      <%# <%= c.attribute_fields do |a| %> 
-        <%# <%= a.attribute_select associations: [] %> 
-      <%# <% end %>
-      <%# <%= c.hidden_field :p, value: "cont" %> 
-      <%# <%= c.value_fields do |v| %> 
-        <%# <%= v.search_field :value, placeholder: '検索ワードを入力' %> 
-      <%# <% end %> 
-    <%# <% end %> 
-    <%# <%= f.submit "検索" ,class:"btn btn-secondary"%> 
-  <%# <% end %> 
-<%# </div> %> 
-<!-- 地名入力用のinputを追加 -->
-<input id="address" type="textbox" value="Sydney, NSW">
-
-<!-- buttonをクリックしたらcodeAddressを実行-->
-<input type="button" value="Encode" onclick="codeAddress()">
 <div id="map" style="width: 100%; height: 800px;"></div>
-
-<!-- js部分 -->
 <script type="text/javascript">
     
     function initMap() {

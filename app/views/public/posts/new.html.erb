@@ -1,5 +1,5 @@
+<div class="container">
 
-<h2 class="text-center">投稿</h2>
 <% if @post.errors.any? %>
   <div class="error_explanation">
 	<h2><%= @post.errors.count %>errors prohibited this obj from being saved:</h2>
@@ -10,7 +10,11 @@
     </ul>
   </div>
 <% end %>
-<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page-title text-center">投稿</h1>
+      </div>
+    </div>
     <%= form_for(@post, url: public_user_posts_path) do |f| %>
       <div class="row">
         <div class="col-md-12">

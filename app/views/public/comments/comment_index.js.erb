@@ -2,5 +2,3 @@
 $('#comment_index').html("<%= escape_javascript(render 'public/comments/comment_index', comments: @comment.post.comments ) %>");
 // 内容消してる
 $('textarea').val('');
-
-

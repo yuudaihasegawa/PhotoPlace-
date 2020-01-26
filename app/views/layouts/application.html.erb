@@ -23,7 +23,11 @@
   <header class="header-top">
     <div class="navbar">
       <li>
-        <%= link_to "TOP", public_homes_top_path %>
+        <% if admin_signed_in? %>
+          <%= link_to image_tag("PhotoPlace_logo.png", class: "image",height: "60"),  admin_posts_path %>
+        <% else %>
+          <%= link_to image_tag("PhotoPlace_logo.png", class: "image",height: "60"),  public_homes_top_path %>
+        <% end %> 
       </li>
       <nav class="nav navbar-expand-lg navbar-right">
         <% if admin_signed_in? %>

@@ -87,6 +87,13 @@
        })();
       <% end %>
       //複数マーカー ここまで  
+      
+      // https://qiita.com/krmbn0576/items/e9bc5384b790df9e39ab
+      var promise = Promise.reject(new Error('promise!!!'));
+      // これで抑制できる！！（後で見る人にとっては意味不明なのでコメントでこの記事のURLを貼っておこう）
+      promise.catch(function(e) {});
+
+      setTimeout(function() {promise.catch(/* 適切なエラーハンドル */);}, 1000);
   }
 
 </script>

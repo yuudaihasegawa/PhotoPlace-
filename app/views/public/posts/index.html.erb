@@ -3,6 +3,11 @@
 <% end %>
 <div class="container">
   <div class="row">
+    <div class="col-md-12">
+      <h1 class="page-title text-center">投稿一覧</h1>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-2 tag-search">
       <h4 class="text-center">タグ</h4>
       <div class="text-center">
@@ -12,16 +17,18 @@
           <%= f.submit "検索" ,class:"btn btn-secondary"%>
         <% end %>
       </div>
-      <% @tags.each do |tag| %>
-        <div class="row">
-          <div class="text-center">
-            <%= link_to public_tag_path(tag) do %>
-              <%= tag.name %>
-              (<%= tag.post_tags.count %>)
-            <% end %>
+      <div class="text-center">
+        <% @tags.each do |tag| %>
+          <div class="row">
+            <div class="tag-ranking text-center">
+              <%= link_to public_tag_path(tag),class:"btn btn-primary" do %>
+                <%= tag.name %>
+                (<%= tag.post_tags.count %>)
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
     <div class="col-md-10">
       <div class="row">

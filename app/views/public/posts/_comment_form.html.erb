@@ -1,4 +1,4 @@
-<%= form_for(comment, url: public_post_comments_path(post),data: { remote: true }) do |f| %>
+<%= form_for(comment, url: public_post_comments_path(post)) do |f| %>
   <div class="form-group">
     <%= f.text_area :content,class:"text",placeholder: "コメントをここに" %> 
     <div class="text-center">

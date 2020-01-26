@@ -2,7 +2,7 @@ class Public::CommentsController < ApplicationController
 
   before_action :corrent_public, only: [:create]
   def corrent_public
-    unless public_signed_in? 
+    unless user_signed_in? 
       redirect_to new_user_registration_path
     end
   end
@@ -16,7 +16,8 @@ class Public::CommentsController < ApplicationController
       @comments = []#空配列を定義
       @comments << @comment #@commentsに今作った@commentをpush・・・comment_lists.html.erbで使う
       flash[:success] = '投稿が完了しました'
-      render :comment_index#(アクションは必要ない（このファイルのjs.erbファイルを作る）)
+      # render :comment_index#(アクションは必要ない（このファイルのjs.erbファイルを作る）)
+      redirect_to public_post_path(@post)
       
     else
       render template: "/public/posts/show"

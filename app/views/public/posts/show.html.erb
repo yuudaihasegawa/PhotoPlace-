@@ -1,71 +1,148 @@
+<%= javascript_include_tag 'public/posts_show.js' %>
 <div class="container">
-  <div class="row">
-    <div class="col-md-9">
-      <div class="text-center">
-        <h1><%= @post.title %></h1>
-        <ul class="bxslider">
-          <% @post.post_images.each do |image| %>
-            <li class="text-center"><%= attachment_image_tag image, :image, size: "750x500", fallback: "no_image.jpg" %></li> 
-          <% end %>
+  <div class="wrap">
+    <div class="row">
+      <div class="col-md-12">
+        <ul id="tab-menu" class="clearfix">
+          <li><a href="#tab1" class="active">投稿</a></li>
+          <li><a href="#tab2" class="">Map</a></li>
+          <li><a href="#tab3" class="">Comment</a></li>
+          <li><a href="#tab4" class="">Favorite</a></li>
         </ul>
+      </div>
+    </div>
+    <div id="tab-contents" class="clearfix">
+      <div id="tab1" class="tab">
         <div class="row">
-          <div class="post-show col-md-8">
-            <div class="text-center">
-              <% @post.post_tags.each do |post_tag| %>
-                <%= post_tag.tag.name %>
+          <div class="col-md-12">
+            <h1 class="page-title text-center"><%= @post.title %></h1>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="text-center">
+            <ul class="bxslider">
+              <% @post.post_images.each do |image| %>
+                <li class="text-center"><%= attachment_image_tag image, :image, size: "900x600", fallback: "no_image.jpg" %></li> 
               <% end %>
+            </ul>
+            <div class="row">
+              <div class="post-show col-md-8">
+                <div class="text-center">
+                  <% @post.post_tags.each do |post_tag| %>
+                    <%= post_tag.tag.name %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="post-show col-md-2">
+                <% if @post.favorited_by?(current_user) %>
+                  <%= link_to public_post_favorites_path(@post),data: {"turbolinks" => false}, method: :delete do %>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                    <%= @post.favorites.count %> いいね
+                  <% end %>
+                <% else %>
+                  <%= link_to public_post_favorites_path(@post),data: {"turbolinks" => false}, method: :post do %>
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <%= @post.favorites.count %> いいね
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="post-show content col-md-12">
+                <p>投稿者コメント<br><%= @post.content %></p>
+              </div>
             </div>
           </div>
-          <div class="post-show col-md-2">
-            <% if @post.favorited_by?(current_user) %>
-              <%= link_to public_post_favorites_path(@post),data: {"turbolinks" => false}, method: :delete do %>
-                <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                <%= @post.favorites.count %> いいね
-              <% end %>
-            <% else %>
-              <%= link_to public_post_favorites_path(@post),data: {"turbolinks" => false}, method: :post do %>
-                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                <%= @post.favorites.count %> いいね
-              <% end %>
-            <% end %>
-          </div>
         </div>
-        <div class="row">
-          <div class="post-show content col-md-12">
-            <p>投稿者コメント<br><%= @post.content %></p>
-          </div>
-        </div>
+      </div>
+      <div id="tab2" class="tab">
         <div class="row">
           <div class="col-md-12 post-show">
             <p class="text-center">住所:<%= @post.address %><p>
-            <div id="map" style='width: 100%; height: 500px;'></div>
+            <div id="map" style='width: 100%; height: 600px;'></div>
             <script type="text/javascript">
-              handler = Gmaps.build('Google');
-              handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
-              markers = handler.addMarkers([
-              {
-              "lat": <%= @post.latitude %>,
-              "lng": <%= @post.longitude %>
-              }
-              ]);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-              handler.getMap().setZoom(17);
-              });
+                handler = Gmaps.build('Google');
+                handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
+                markers = handler.addMarkers([
+                {
+                "lat": <%= @post.latitude %>,
+                "lng": <%= @post.longitude %>
+                }
+                ]);
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+                handler.getMap().setZoom(17);
+                });
             </script>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="text-center">
-          <%= render 'public/posts/comment_form', comment: @comment, post: @post %>
+      <div id="tab3" class="tab">
+        <div class="col-md-12">
+          <div class="text-center">
+            <%# <%= render 'public/posts/comment_form', comment: @comment, post: @post %> 
+            <%= form_for(@comment, url: public_post_comments_path(@post)) do |f| %>
+              <div class="form-group">
+                <%= f.text_area :content,class:"text",placeholder: "コメントをここに" %> 
+                <div class="text-center">
+                  <%= f.submit "送信する" ,class:"btn btn-secondary"%>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <%# <%= render 'public/comments/comment_index', comments: @comments %> 
+          <h3 class="text-center">コメント一覧</h3>
+          <table class="table table-striped">
+              <tr>
+                <th>顔写真</th>
+                <th>名前</th>
+                <th>投稿日</th>
+                <th>コメント</th>
+              </tr>
+            <% @comments.each do |comment| %>
+            <%# <div class="post-show"> %>
+                <tr>
+                  <td>
+                    <%= link_to public_user_path(comment.user.id) do %>
+                      <%= attachment_image_tag comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
+                    <% end %>
+                  </td>
+                  <td><%= comment.user.name %></td>
+                  <td><%= comment.created_at.strftime("%Y/%m/%d") %></td>
+                  <td><%= comment.content %></td>
+                </tr>
+            <% end %>
+          </table>
         </div>
-        <h3>コメント一覧</h3>
-        <div id="comment_index">
-          <%= render 'public/comments/comment_index', comments: @comments %>
+      </div>
+      <div id="tab4" class="tab">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center">お気に入りした会員</h1>
+            <div class="text-center">
+              <% @favorites.each do |favorite|%>
+                <div id="posts">
+                <div class="post_image">
+                  <%= link_to public_user_path(favorite.user.id) do %>
+                    <%= attachment_image_tag favorite.user, :profile_image, size: "300x200", fallback: "no_image.jpg" %>
+                  <% end %>
+                </div>
+                <div class="post_text">
+                    <div class="text-center">
+                      <%= favorite.user.name %>
+                    </div>
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <%= favorite.user.introduction.truncate(20) %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              <%= paginate @favorites %>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 </div>

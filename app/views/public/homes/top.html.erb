@@ -1,9 +1,127 @@
-<div class="homes-back"></div>
-<div class="content">
-  <h1 class="homes-h1">ようこそ</h1>
-    <% if flash[:notice] %>
-      <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>
-    <% end %>
-  <%= link_to "log in", new_user_session_path %>
-  <%= link_to "sign_up", new_user_registration_path %>
+<% if flash[:notice] %>
+  <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>
+<% end %>
+<div class="top-back">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <h1 class="top-h1">ようこそ</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div classs="row">
+            <div class="col-md-6 text-center">
+              <div class="top-button">
+                <%= link_to "sign in", new_user_session_path,class:"btn btn-success",role:"button"  %>
+              </div>
+            </div>
+            <div class="col-md-6 text-center">
+              <div class="top-button">
+                <%= link_to "sign up", new_user_registration_path,class:"btn btn-primary",role:"button" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="page-title col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">タグランキング</h1>
+      </div>
+    </div>
+    <div class="row">
+      <% @tag_ranking.each do |tag| %>
+        <div class="tag-ranking text-center">
+          <%= link_to public_tag_path(tag),class:"btn btn-primary" do %>
+            <%= tag.name %>
+            (<%= tag.post_tags.count %>)
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">新規投稿</h1>
+      </div>
+    </div>
+    <div class="row">
+      <% @new_posts.each do |post| %>
+        <div id="posts" >
+          <div class="post_image">
+            <%= link_to public_post_path(post) do %>
+              <%= attachment_image_tag post.post_images.first, :image, size: "300x200", fallback: "no_image.jpg" %>
+            <% end %>
+          </div>
+          <div class="post_text">
+            <div class="row">
+              <div class="col-md-6 text-center">
+                  <%= post.title %>
+              </div>
+              <div class="col-md-6 text-center">
+                <%= post.favorites.count %>いいね
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-center">
+                  <%= post.address %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">人気の写真</h1>
+      </div>
+    </div>
+    <div class="row">
+      <% @post_ranking.each do |post| %>
+        <div id="posts" >
+          <div class="post_image">
+            <%= link_to public_post_path(post) do %>
+              <%= attachment_image_tag post.post_images.first, :image, size: "300x200", fallback: "no_image.jpg" %>
+            <% end %>
+          </div>
+          <div class="post_text">
+            <div class="row">
+              <div class="col-md-6 text-center">
+                  <%= post.title %>
+              </div>
+              <div class="col-md-6 text-center">
+                <%= post.favorites.count %>いいね
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-center">
+                  <%= post.address %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

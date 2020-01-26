@@ -3,53 +3,84 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /* Article:  https://superdevresources.com/full-background-image-css/ */
 
+// TOPページ
 
-.homes-back {
+.message {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%; 
+  height:45%;
+  bottom: 0; 
   display: block;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top:0;
-  z-index: -10;
+  position: absolute;
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 0.5em;
+}
+
+.top-h1{
+  padding: 100px;
+}
+
+.top-button{
+  padding: 50px;
+  height: 100px;
+}
+
+.top-back{
+  background-image: image-url("top.jpg");
+  background-size: cover; 
+  width: 100%;
+  height: 600px;
+}
+
+.tag-ranking{
+  padding: 5px;
+}
+
+
+
+// aboutページ
+.about-back {
   background: url(https://superdevresources.com/wp-content/uploads/2015/12/new-york-background.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: 100%;
 }
-.homes-h1, .homes-h1 a {
+
+.content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  margin:auto;
+  background: rgba(22,22,22, 0.7);
+  width: 100%;
+  max-width: 960px;
+  border-radius: 5px;
+  padding-bottom: 32px;
+}
+
+.about-h1 {
   min-height: 120px;
   width: 90%;
-  max-width: 700px;
+  max-width: 800px;
   vertical-align: middle;
   text-align: center;
   margin: 0 auto;
   text-decoration: none;
   color: #fff;
   padding-top: 80px;
+  padding-bottom: 50px; 
 }
-.homes{
-  html, body{
-    height: 100%;
-  }
 
-  .content {
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    color: transparent;
-    margin: 40px auto;
-    background: rgba(22,22,22, 0.5);
-    width: 100%;
-    max-width: 960px;
-    border-radius: 5px;
-    padding-bottom: 32px;
-  }
-
-  p {
-    width: 90%;
-    max-width: 700px;
-    text-align: left;
-    margin: 0 auto;
-    padding-bottom: 32px;
-  }
+.about-p{
+  width: 90%;
+  max-width: 700px;
+  text-align: left;
+  margin: 0 auto;
+  padding-bottom: 32px;
+  text-align: center;
 }

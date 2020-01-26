@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
 
   before_action :corrent_public, only: [:create,:destroy]
   def corrent_public
-    unless public_signed_in? 
+    unless user_signed_in? 
       redirect_to new_user_registration_path
     end
   end
@@ -25,8 +25,10 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    # コメント
     @comment = Comment.new
     @comments = @post.comments.order(id: "DESC").page(params[:page]).per(30)
+    @favorites = @post.favorites.order(id: "DESC").page(params[:page]).per(30)
     # @post_tag = PostTag.where(post_id: @post.id)
     # @tag = Tag.where(id: @post_tag.tag_id)
     session[:post_id] = @post.id
