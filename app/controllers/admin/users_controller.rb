@@ -32,7 +32,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = 'プロフィールを変更しました'
-      redirect_to public_user_path(@user)
+      redirect_to admin_user_path(@user)
     else
       render :edit
     end

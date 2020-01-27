@@ -36,12 +36,12 @@
               <i class="fas fa-users"></i>
             <% end %>
           </li>
-          <li>
+          <li class="posts">
             <%= link_to admin_posts_path do %>
               <i class="far fa-images"></i>
             <% end %>
           </li>
-          <li>
+          <li class="map">
             <%= link_to admin_maps_path ,data: {"turbolinks" => false} do %>
               <i class="fas fa-map-marked-alt"></i>
             <% end %>
@@ -54,7 +54,9 @@
         <% elsif user_signed_in? %> 
           <li>
             <%= link_to public_user_path(current_user.id) do %>
+              <i class="fas fa-user">
               <% current_user.name %>
+              </i>
             <% end %>
           </li>
           <li>

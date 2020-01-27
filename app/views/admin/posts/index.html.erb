@@ -14,11 +14,13 @@
       </div>
       <% @tags.each do |tag| %>
         <div class="row">
-          <div class="text-center">
-            <%= link_to admin_tag_path(tag) do %>
-              <%= tag.name %>
-              (<%= tag.post_tags.count %>)
-            <% end %>
+          <div class="col-md-12">
+            <div class="tag-ranking text-center">
+              <%= link_to admin_tag_path(tag),class:"btn btn-primary" do %>
+                <%= tag.name %>
+                (<%= tag.post_tags.count %>)
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>

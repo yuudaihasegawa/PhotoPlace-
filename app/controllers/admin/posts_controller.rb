@@ -22,6 +22,8 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments.order(id: "DESC").page(params[:page]).per(30)
+    @favorites = @post.favorites.order(id: "DESC").page(params[:page]).per(30)
   end
 
   def destroy

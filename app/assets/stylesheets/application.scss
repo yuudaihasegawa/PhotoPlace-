@@ -55,12 +55,24 @@ footer {
   height: 50px;
   width: 100%;
   bottom: 0;
-  z-index: 9999;
+  // z-index: 999;
     background-color: rgb(0, 0, 0);
 }
 
 i {
   font-size: 50px;
+  color: white;
+
+  
+}
+.fa-chevron-circle-up{
+  color: #000;
+  z-index: 9999;
+}
+
+li {
+  color: rgb(0,0,0);
+  margin: 10px;
 }
 
 // sign up、log in画面
@@ -92,10 +104,7 @@ i {
 
 }
 
-li {
-  color: rgba(250, 2, 2, 0);
-  margin: 10px;
-}
+
 
 .page-title{
   padding:20px; 
@@ -138,6 +147,91 @@ li {
   right: 20px;
   bottom: 20px;
 }
+
+//タブメニュー（user）
+.wrap{
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+#tab-menu-user li {
+  float: left;
+  list-style-type: none;
+  width: 31%;
+}
+
+#tab-menu-user a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #000;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+#tab-menu-user .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents-user .tab {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #000;
+  border-top: none;
+  margin-bottom:20px;
+}
+ 
+#tab-contents-user p{
+  color:#000;
+  line-height: 2.5;
+}
+
+//タブメニュー（post）
+.wrap{
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+#tab-menu-post li {
+  float: left;
+  list-style-type: none;
+  width: 23%;
+}
+
+#tab-menu-post a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #000;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+#tab-menu-post .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents-post .tab {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #000;
+  border-top: none;
+  margin-bottom:20px;
+}
+ 
+#tab-contents-post p{
+  color:#000;
+  line-height: 2.5;
+}
+
 
 
 
