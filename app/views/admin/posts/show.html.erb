@@ -1,38 +1,157 @@
 
-  <% @post.post_images.each do |image| %>
-    <%= attachment_image_tag image, :image, size: "50x50", fallback: "no_image.jpg" %>
-  <% end %>
-  <%= @post.title %>
-  <%= @post.content %>
-  <%= @post.price %>
-  <%= @post.address %>
-  <%= @post.favorites.count %> いいね
+<%= javascript_include_tag 'public/posts_show.js' %>
+<div class="container">
+  <div class="wrap">
+    <div class="row">
+      <div class="col-md-12">
+        <ul id="tab-menu-post" class="clearfix">
+          <li><a href="#tab1" class="active">投稿</a></li>
+          <li><a href="#tab2" class="">Map</a></li>
+          <li><a href="#tab3" class="">Comment</a></li>
+          <li><a href="#tab4" class="">Favorite</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="tab-contents-post" class="clearfix">
+      <div id="tab1" class="tab">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="page-title text-center"><%= @post.title %></h1>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="text-center">
+            <ul class="bxslider">
+              <% @post.post_images.each do |image| %>
+                <li class="text-center"><%= attachment_image_tag image, :image, size: "900x600", fallback: "no_image.jpg" %></li>
+              <% end %>
+            </ul>
+            <div class="row">
+              <div class="post-show col-md-8">
+                <div class="text-center">
+                  <% @post.post_tags.each do |post_tag| %>
+                    <%= link_to admin_tag_path(post_tag.tag.id),class:"btn btn-primary" do %>
+                      <%= post_tag.tag.name %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="post-show col-md-2 text-center">
+                <%= @post.favorites.count %> いいね
+              </div>
+              <div class="post-show col-md-2 text-center">
+                <%= link_to "削除",admin_post_path(@post),method: :delete,"data-confirm" => "削除してしまってよろしいでしょうか？",class:"btn btn-danger Edit btn-rg" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="text-center">投稿者コメント</h2>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-12 text-center post-show">
+                  <%= attachment_image_tag @post.user, :profile_image, size: "200x200", fallback: "no_image.jpg" %></li>
+                    <%= link_to admin_user_path(@post.user.id) do %>
+                    <div class="row">
+                      <div class="col-md-12 text-center">
+                        <%= @post.user.name%>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="post-show content col-md-8">
+              <p><%= @post.content %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab2" class="tab">
+        <div class="row">
+          <div class="col-md-12 post-show">
+            <h3 class="text-center post-show">住所：<%= @post.address %><h3>
+            <div id="map" style='width: 100%; height: 600px;'></div>
+            <script type="text/javascript">
+              handler = Gmaps.build('Google');
+              handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
+              markers = handler.addMarkers([
+              {
+              "lat": <%= @post.latitude %>,
+              "lng": <%= @post.longitude %>
+              }
+              ]);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+              handler.getMap().setZoom(17);
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+      <div id="tab3" class="tab">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h3>コメント一覧</h3>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <tr>
+                  <th>顔写真</th>
+                  <th>名前</th>
+                  <th>投稿日</th>
+                  <th>コメント</th>
+                </tr>
+                <% @post.comments.each do |comment| %>
+                  <tr>
+                    <td>
+                      <%= link_to admin_user_path(comment.user.id) do %>
+                        <%= attachment_image_tag comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
+                      <% end %>
+                    </td>
+                    <td><%= comment.user.name %></td>
+                    <td><%= comment.created_at.strftime("%Y/%m/%d") %></td>
+                    <td><%= comment.content %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab4" class="tab">
+        <div class="col-md-12">
+          <h3 class="text-center">お気に入りした会員</h3>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <% @favorites.each do |favorite|%>
+                <div id="posts">
+                <div class="post_image">
+                  <%= link_to admin_user_path(favorite.user.id) do %>
+                    <%= attachment_image_tag favorite.user, :profile_image, size: "300x200", fallback: "no_image.jpg" %>
+                  <% end %>
+                </div>
+                <div class="post_text">
+                    <div class="text-center">
+                      <%= favorite.user.name %>
+                    </div>
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <%= favorite.user.introduction.truncate(20) %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              <%= paginate @favorites %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <%= link_to edit_admin_post_path(@post) do %>
-    <p>この投稿を編集する</p>
-  <% end %>
-
-  <table class="table table-striped">
-    　<thead>
-      <tr>
-        <th>顔写真</th>
-        <th>会員名</th>
-        <th>コメント内容</th>
-      </tr>
-    <thead>
-
-    <% @post.comments.each do |comment| %>
-      <tbody>
-        <tr>
-          <th><%= attachment_image_tag comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg" %></th>
-          <th>
-            <%= link_to admin_user_path(comment.user.id) do %>
-              <%= comment.user.name %>
-            <% end %>
-          </th>
-          <th><%= comment.content %></th>
-          <th><%= comment.created_at.strftime('%Y/%m/%d') %></th>
-        </tr>
-      </tbody>
-    <% end %>
-</table>

@@ -1,0 +1,4 @@
+//コメント一覧に今作成したコメントを追加（動的に）
+$('#comment_index').html("<%= escape_javascript(render 'public/comments/comment_index', comments: @comment.post.comments ) %>");
+// 内容消してる
+$('textarea').val('');

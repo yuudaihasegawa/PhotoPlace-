@@ -1,28 +1,48 @@
-
-      <h2 class="pro text-center">会員一覧</h2>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>顔写真</th>
-            <th>名前</th>
-            <th>自己紹介文</th>
-            <th></th>
-          </tr>
-        <thead>
-
-        <% @user.each do |user| %>
-          <tbody>
-            <tr>
-              <th>
-                <%= attachment_image_tag user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
-              </th>
-              <th>
-                <%= link_to admin_user_path(user) do %>
-                  <%= user.name %>
-                <% end %>
-              </th>
-              <th><%= user.introduction %></th>
-            </tr>
-          </tbody>
+<% if flash[:notice] %>
+        <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>
+<% end %>
+<div class="container">
+  <div class="col-md-12 text-center">
+    <h2 class="text-center">会員一覧</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= search_form_for(@q,html: {class: 'public_pulldown'} , url:admin_users_path) do |f| %>
+        <%= f.condition_fields do |c| %>
+          <%= c.attribute_fields do |a| %>
+            <%= a.attribute_select associations: [] %>
+          <% end %>
+          <%= c.hidden_field :p, value: "cont" %>
+          <%= c.value_fields do |v| %>
+            <%= v.search_field :value, placeholder: '検索ワードを入力' %>
+          <% end %>
         <% end %>
-      </table>
+        <%= f.submit "検索" ,class:"btn btn-secondary"%>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <% @user.each do |user| %>
+        <div id="posts">
+          <div class="post_image">
+            <%= link_to admin_user_path(user) do %>
+              <%= attachment_image_tag user, :profile_image, size: "300x200", fallback: "no_image.jpg" %>
+            <% end %>
+          </div>
+          <div class="post_text">
+              <div class="text-center">
+                <%= user.name %>
+              </div>
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <%= user.introduction.truncate(20) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= paginate @user %>
+    </div>
+  </div>
+</div>
