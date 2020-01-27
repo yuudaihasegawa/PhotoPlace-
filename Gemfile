@@ -78,5 +78,5 @@ gem 'refile', require: 'refile/rails', github: 'refile/refile'
 gem 'refile-mini_magick'
 
 group :production do
-  gem 'mysql2', '~> 0.3.20'
+  gem 'mysql2', '~> 0.3.21'
 end
