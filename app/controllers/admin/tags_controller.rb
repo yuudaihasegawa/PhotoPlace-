@@ -1,5 +1,7 @@
-class Admin::TagsController < ApplicationController
+# frozen_string_literal: true
 
+
+class Admin::TagsController < ApplicationController
   before_action :corrent_admin, only: [:show]
   def corrent_admin
     unless admin_signed_in? 
@@ -26,5 +28,4 @@ class Admin::TagsController < ApplicationController
     @tag.destroy
     redirect_to admin_posts_path
   end
-
 end

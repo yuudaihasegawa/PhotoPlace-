@@ -1,0 +1,8 @@
+inherit_from:
+   .rubocop_airbnb.yml
+
+  AsciiComments:
+    Enabled: false
+
+  Documentation:
+  Enabled: false

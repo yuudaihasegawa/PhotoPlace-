@@ -1,11 +1,14 @@
+# frozen_string_literal: true
 class Admin::UsersController < ApplicationController
-
+  
   before_action :corrent_admin, only: [:index,:show,:edit,:update,:destroy]
   def corrent_admin
     unless admin_signed_in? 
       redirect_to public_homes_top_path
     end
   end
+
+
 
   def index
     @user = User.all.page(params[:page]).per(50)
@@ -48,6 +51,6 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email,:introduction,:pocet_money,:profile_image) 
+    params.require(:user).permit(:name, :email, :introduction, :pocet_money, :profile_image)
   end
 end

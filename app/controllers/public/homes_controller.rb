@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Public::HomesController < ApplicationController
 
   def top
@@ -13,8 +14,7 @@ class Public::HomesController < ApplicationController
     @tag_ranking = Tag.where(id: post_tag_ids).order(id: "DESC").limit(30)
   end
 
-  def about
-    
-  end
-end
 
+
+  def about; end
+end

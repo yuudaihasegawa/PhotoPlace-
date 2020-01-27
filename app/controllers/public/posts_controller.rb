@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Public::PostsController < ApplicationController
 
   before_action :corrent_public, only: [:create,:destroy]
@@ -9,6 +10,7 @@ class Public::PostsController < ApplicationController
 
   # autocomplete :tag, :name
   PER = 1
+
 
   def index
     @posts = Post.all.includes(:favorites,:post_images)
@@ -33,7 +35,7 @@ class Public::PostsController < ApplicationController
     # @tag = Tag.where(id: @post_tag.tag_id)
     session[:post_id] = @post.id
   end
-  
+
   def new
     @user = User.find(params[:user_id])
     @post = Post.new
@@ -111,16 +113,20 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def update; end
+
 
   def destroy
     
   end
 
 
+
   private
 
   def post_params
     params.require(:post).permit(:title,:content,:price,:_destroy,:address,:latitude,:longitude,:user_id,post_images_attributes:[:id,:image,:_destroy]) 
+
   end
 
 end
