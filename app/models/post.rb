@@ -11,8 +11,7 @@ class Post < ApplicationRecord
   validates :title, length: { in: 1..30 }
   validates :content, length: { in: 1..150 }
   validates :address, length: { in: 1..50 }
-  # validates_associated :images
-  # validates :image_id, presence: true
+
   geocoded_by :address
   after_validation :geocode
 

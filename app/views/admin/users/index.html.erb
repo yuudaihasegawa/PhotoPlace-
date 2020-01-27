@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="col-md-12 text-center">
-      <%= search_form_for(@q,html: {class: 'public_pulldown'} , url:public_posts_path) do |f| %>
+      <%= search_form_for(@q,html: {class: 'public_pulldown'} , url:admin_users_path) do |f| %>
         <%= f.condition_fields do |c| %>
           <%= c.attribute_fields do |a| %>
             <%= a.attribute_select associations: [] %>

@@ -9,7 +9,6 @@
   </div>
   <div class="row">
     <div class="col-md-2 tag-search">
-      <h4 class="text-center">タグ</h4>
       <div class="text-center">
         <%= search_form_for(@tag_search, url:public_posts_path) do |f| %>
           <%= f.label :name, "タグ名" %>
@@ -20,11 +19,13 @@
       <div class="text-center">
         <% @tags.each do |tag| %>
           <div class="row">
-            <div class="tag-ranking text-center">
-              <%= link_to public_tag_path(tag),class:"btn btn-primary" do %>
-                <%= tag.name %>
-                (<%= tag.post_tags.count %>)
-              <% end %>
+            <div class="col-md-12">
+              <div class="tag-ranking text-center">
+                <%= link_to public_tag_path(tag),class:"btn btn-primary" do %>
+                  <%= tag.name %>
+                  (<%= tag.post_tags.count %>)
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>

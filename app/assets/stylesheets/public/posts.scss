@@ -107,49 +107,6 @@
   overflow-wrap: break-word;
 }
 
-//タブメニュー
-.wrap{
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-#tab-menu li {
-  float: left;
-  list-style-type: none;
-  width: 23%;
-}
-
-#tab-menu a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 20px;
-  text-align: center;
-  background: #000;
-  border: 1px solid #000;
-  border-bottom: none;
-}
-
-#tab-menu .active {
-  background: #fff;
-  color: #000;
-}
-
-#tab-contents .tab {
-  padding: 30px;
-  background: #fff;
-  border: 1px solid #000;
-  border-top: none;
-}
- 
-#tab-contents p{
-  color:#000;
-  line-height: 2.5;
-}
-
-
-
 
 
 // .modal{
