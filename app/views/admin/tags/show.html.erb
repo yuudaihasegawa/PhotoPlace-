@@ -1,0 +1,66 @@
+<% if flash[:notice] %>
+        <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 tag-search">
+      <div class="text-center">
+        <%= search_form_for(@tag_search, url:admin_posts_path) do |f| %>
+          <%= f.label :name, "タグ名" %>
+          <%= f.search_field :name_cont %>
+          <%= f.submit "検索" ,class:"btn btn-secondary"%>
+        <% end %>
+      </div>
+      <% @tags.each do |tag| %>
+        <div class="row">
+          <div class="text-center">
+            <%= link_to admin_tag_path(tag) do %>
+              <%= tag.name %>
+              (<%= tag.post_tags.count %>)
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-10">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="text-center"><%= @tag.name %></h1>
+          </div>
+          <div class="col-md-6">
+            <div class="text-center">
+              <%= link_to admin_tag_path(@tag),method: :delete,class:"btn btn-danger" do %>
+                <p>このタグを削除する</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <% @posts.each do |post| %>
+            <div id="posts" >
+              <div class="post_image">
+                <%= link_to admin_post_path(post), data: {"turbolinks" => false} do %>
+                  <%= attachment_image_tag post.post_images.first, :image, size: "300x200",class:"image", fallback: "no_image.jpg" %>
+                <% end %>
+              </div>
+              <div class="post_text">
+                <div class="text-center">
+                  <%= post.title %>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                      <%= post.user.name %>
+                    </div>
+                    <div class="col-md-6 text-center">
+                      <%= post.favorites.count %> いいね
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

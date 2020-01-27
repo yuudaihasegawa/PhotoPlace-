@@ -1,0 +1,244 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require bxslider
+ *= require font-awesome
+ *= require_tree .
+ *= require_self
+ */
+
+ @import "bootstrap";
+ @import "font-awesome";
+
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+ width: 100%;
+
+}
+
+main{
+  padding-top: 95px;
+}
+
+.clearfix::after {
+	content:"";
+	display: block;
+	clear: both;
+}
+
+
+
+header {
+  margin-bottom:30px;
+  height: 50px;
+  // opacity: 0.8;
+  float: none;
+  position: fixed;
+  z-index: 9999;
+}
+
+footer {
+  height: 50px;
+  width: 100%;
+  bottom: 0;
+  // z-index: 999;
+    background-color: rgb(0, 0, 0);
+}
+
+i {
+  font-size: 50px;
+  color: white;
+
+  
+}
+.fa-chevron-circle-up{
+  color: #000;
+  z-index: 9999;
+}
+
+li {
+  color: rgb(0,0,0);
+  margin: 10px;
+}
+
+// sign up、log in画面
+.sign {
+  padding: 20px;
+  font-size: 20px
+}
+
+.error {
+  color: red;
+}
+
+.header-top{
+  display: flexd;
+  width: 100%;
+}
+
+.navbar {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+.navbar-custom .navbar-text {
+  color: gold;
+  font-size: 20px;
+}
+
+.navbar-rigth {
+  color: rgb(255, 255, 255);
+
+}
+
+
+
+.page-title{
+  padding:20px; 
+}
+
+
+.header_link {
+  margin-right: 20px;
+}
+
+.tag-search{
+  padding: 15px;
+}
+
+// 投稿検索のプルダウン
+.post_pulldown {
+  padding-top:30px; 
+  $is: 0,1,2,4,7,8,9,10,11;
+  /*$isに何番目を指定するかいれる*/
+  
+  @each $i in $is {
+      option:nth-of-type(#{$i}) { display: none }
+  /*つまり上記の場合,$is:n;番目のカラムを非表示にしてる*/
+  }
+}
+
+// 会員検索のプルダウン
+.public_pulldown {
+  $is: 0,1,2,3,4,5,6,7,8,11,12,13;
+  /*$isに何番目を指定するかいれる*/
+  
+  @each $i in $is {
+      option:nth-of-type(#{$i}) { display: none }
+  /*つまり上記の場合,$is:n;番目のカラムを非表示にしてる*/
+  }
+}
+
+#back {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+//タブメニュー（user）
+.wrap{
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+#tab-menu-user li {
+  float: left;
+  list-style-type: none;
+  width: 31%;
+}
+
+#tab-menu-user a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #000;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+#tab-menu-user .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents-user .tab {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #000;
+  border-top: none;
+  margin-bottom:20px;
+}
+ 
+#tab-contents-user p{
+  color:#000;
+  line-height: 2.5;
+}
+
+//タブメニュー（post）
+.wrap{
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+#tab-menu-post li {
+  float: left;
+  list-style-type: none;
+  width: 23%;
+}
+
+#tab-menu-post a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #000;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+#tab-menu-post .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents-post .tab {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #000;
+  border-top: none;
+  margin-bottom:20px;
+}
+ 
+#tab-contents-post p{
+  color:#000;
+  line-height: 2.5;
+}
+
+
+
+
+
+
+
+.footer-text{
+  color: white;
+}
+

@@ -1,8 +1,0 @@
-<h1>タグ一覧</h1>
-
-<% @tags.each do |tag| %>
-  <%= tag.name %>
-  <%= link_to admin_tag_path(tag),method: :delete do %>
-    <p>タグを削除する</p>
-  <% end %>
-<% end %>

@@ -25,21 +25,14 @@ ActiveRecord::Schema.define(version: 20_200_109_100_436) do
     t.index ['reset_password_token'], name: 'index_admins_on_reset_password_token', unique: true
   end
 
-  create_table 'chages', force: :cascade do |t|
-    t.integer 'user_id'
-    t.integer 'chage_price', default: 0
-    t.datetime 'deleted_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-  end
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.text "content"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
 
-  create_table 'comments', force: :cascade do |t|
-    t.integer 'user_id'
-    t.integer 'post_id'
-    t.text 'content'
-    t.datetime 'deleted_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
   end
 
   create_table 'favorites', force: :cascade do |t|
@@ -66,53 +59,43 @@ ActiveRecord::Schema.define(version: 20_200_109_100_436) do
     t.datetime 'updated_at', null: false
   end
 
-  create_table 'posts', force: :cascade do |t|
-    t.string 'title'
-    t.integer 'user_id', null: false
-    t.text 'content'
-    t.integer 'price', default: 0
-    t.string 'address'
-    t.float 'latitude'
-    t.float 'longitude'
-    t.datetime 'deleted_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['address'], name: 'index_posts_on_address'
-    t.index ['title'], name: 'index_posts_on_title'
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id", null: false
+    t.text "content"
+    t.string "address"
+    t.float "longitude"
+    t.float "latitude"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address"], name: "index_posts_on_address"
+    t.index ["title"], name: "index_posts_on_title"
   end
 
-  create_table 'purchases', force: :cascade do |t|
-    t.integer 'user_id'
-    t.integer 'post_id'
-    t.integer 'price'
-    t.datetime 'deleted_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name"
   end
 
-  create_table 'tags', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'deleted_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['name'], name: 'index_tags_on_name'
-  end
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "profile_image_id"
+    t.string "name"
+    t.text "introduction"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.string 'profile_image_id'
-    t.string 'name'
-    t.text 'introduction'
-    t.integer 'pocket_money', default: 0
-    t.datetime 'deleted_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['name'], name: 'index_users_on_name'
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 end
