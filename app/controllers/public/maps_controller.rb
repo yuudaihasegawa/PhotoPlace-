@@ -1,6 +1,5 @@
+
 class Public::MapsController < ApplicationController
-
-
 
   def index
     @posts = Post.all.includes(:favorites,:post_images)
@@ -9,8 +8,9 @@ class Public::MapsController < ApplicationController
     # @q.build_condition if @q.conditions.empty?
   end
 
-  def map
-  end
+class Public::MapsController < ApplicationController
+  def index; end
+
 
   private
 

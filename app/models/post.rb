@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
-  
   belongs_to :user
 
   has_many :post_images ,dependent: :destroy
@@ -26,4 +27,3 @@ class Post < ApplicationRecord
 
   acts_as_paranoid
 end
-
