@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PhotoPlace</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta charset="UTF-8">
+    <%# <link rel="stylesheet" href="/jquery.bxslider.css"> %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> %>
+    <%# Google Map %>
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDV3FrzOT8FZ7-zSj_SKFEPslqSdQNWQvo&callback=initMap">
+    </script>
+    <script src="https://kit.fontawesome.com/cd239a14b3.js" crossorigin="anonymous"></script>
+    <%# bxslider %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+  </head>
+  <header class="header-top">
+    <div class="navbar">
+      <li>
+        <% if admin_signed_in? %>
+          <%= link_to image_tag("PhotoPlace_logo.png", class: "image",height: "60"),  admin_posts_path %>
+        <% else %>
+          <%= link_to image_tag("PhotoPlace_logo.png", class: "image",height: "60"),  public_homes_top_path %>
+        <% end %> 
+      </li>
+      <nav class="nav navbar-expand-lg navbar-right">
+        <% if admin_signed_in? %>
+          <li>
+            <%= link_to admin_users_path do %>
+              <i class="fas fa-users"></i>
+            <% end %>
+          </li>
+          <li class="posts">
+            <%= link_to admin_posts_path do %>
+              <i class="far fa-images"></i>
+            <% end %>
+          </li>
+          <li class="map">
+            <%= link_to admin_maps_path ,data: {"turbolinks" => false} do %>
+              <i class="fas fa-map-marked-alt"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_admin_session_path,method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i>
+            <% end %>
+          </li>
+        <% elsif user_signed_in? %> 
+          <li>
+            <%= link_to public_user_path(current_user.id) do %>
+              <i class="fas fa-user">
+              <% current_user.name %>
+              </i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to public_posts_path do %>
+              <i class="far fa-images"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to public_maps_path, data: {"turbolinks" => false} do %>
+              <i class="fas fa-map-marked-alt"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_public_user_post_path(current_user) do %>
+              <i class="fas fa-book-open"></i>
+            <% end %>
+          </li>
+        <% else %> 
+          <li>
+            <%= link_to public_homes_about_path do %>
+              <i class="fas fa-book-reader"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to public_maps_path, data: {"turbolinks" => false} do %>
+              <i class="fas fa-map-marked-alt"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+              <i class="fas fa-sign-in-alt"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path do %>
+              <i class="fas fa-user-plus"></i>
+            <% end %>
+          <li>
+        <% end %> 
+      </nav>
+    </div>
+  </header>
+  <body>
+    <main>
+    <%= yield %>
+    </main>
+    <span id="back">
+      <a href="#">
+        <i class="fas fa-chevron-circle-up"></i>
+      </a>
+    </span>
+  </body>
+  <footer class="footer">
+      <p class="footer-text">© All rights reserved by PhotoPlace.Inc.</p>
+  </footer>
+
+</html>

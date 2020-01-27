@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
   root 'public/homes#top'
   get 'public/homes/top'
@@ -9,14 +9,16 @@ Rails.application.routes.draw do
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
     registrations: 'admins/registrations',
+
+
   }
 
-  devise_for :users,controllers: {
-    sessions:     'publics/sessions',
-    passwords:     'publics/passwords',
-    registrations: 'publics/registrations',
+  devise_for :users, controllers: {
+    sessions: 'publics/sessions',
+    passwords: 'publics/passwords',
+    registrations: 'publics/registrations'
   }
-
+  
   namespace :admin do
     get '/map_request', to: 'maps#index', as: 'map_request'
     resources :users, only:[:index,:edit,:update,:show,:destroy]
@@ -24,11 +26,11 @@ Rails.application.routes.draw do
     resources :tags, only:[:show,:destroy]
     resources :comment, only:[:edit,:update,:destroy]
     resources :maps, only:[:index]
+
   end
 
-
-
   namespace :public do
+
     get '/map_request', to: 'maps#index', as: 'map_request'
 
     resources :users, only:[:show,:edit,:update,:destroy] do
@@ -45,6 +47,7 @@ Rails.application.routes.draw do
 
     resources :maps, only:[:index]
     resources :tags, only:[:show]
+
 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
