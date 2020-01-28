@@ -6,13 +6,12 @@
 
 # Ignore bundler config.
 /.bundle
-/config/initializers/geocoder.rb
-/app/views/layouts/application.html.erb
+
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
-/db/seeds.rb
+
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -32,7 +31,9 @@ vendor/bundle/*
 /public/assets
 .byebug_history
 
-/config/database.yml
+
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/database.yml
+/db/seeds.rb
