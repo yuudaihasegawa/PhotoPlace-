@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class Public::PostsController < ApplicationController
 
-  before_action :corrent_public, only: [:create,:destroy]
+  before_action :corrent_public, only: [:index,:show,:new,:create,:destroy]
   def corrent_public
     unless user_signed_in? 
       redirect_to new_user_registration_path
@@ -98,9 +98,9 @@ class Public::PostsController < ApplicationController
           redirect_to public_posts_path(@post)
 
         else
-          @post.destroy
+          @post.really_destroy!
           flash[:success] = '住所を認識できませんでした。正しい住所を入れてください。'
-          render :new
+          redirect_to new_public_user_post_path
         end
 
       else

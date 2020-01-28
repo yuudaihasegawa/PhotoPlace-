@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+Rails.application.routes.draw do
   root 'public/homes#top'
   get 'public/homes/top'
   get 'public/homes/about'
