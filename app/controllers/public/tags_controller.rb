@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 class Public::TagsController < ApplicationController
 
+
+  before_action :corrent_public, only: [:show,:new]
+  def corrent_public
+    unless user_signed_in? 
+      redirect_to new_user_registration_path
+    end
+  end
+
   def show
     @tags = Tag.all
     @tag = Tag.find(params[:id])
