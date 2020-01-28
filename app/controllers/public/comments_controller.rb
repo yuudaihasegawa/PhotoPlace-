@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::CommentsController < ApplicationController
 
   before_action :corrent_public, only: [:create]
@@ -20,6 +22,7 @@ class Public::CommentsController < ApplicationController
       redirect_to public_post_path(@post)
       
     else
+
       render template: "/public/posts/show"
     end
   end
@@ -28,11 +31,9 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-
-
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id,:content,:post_id,:_destroy) 
+    params.require(:comment).permit(:user_id, :content, :post_id, :_destroy)
   end
 end
