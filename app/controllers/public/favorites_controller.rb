@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Public::FavoritesController < ApplicationController
 
   before_action :corrent_public, only: [:create,:destroy]
@@ -12,7 +13,7 @@ class Public::FavoritesController < ApplicationController
     @favorite = current_user.favorites.new(post_id: @post.id)
     @favorite.save
     redirect_to public_post_path(@post)
-  end 
+  end
 
   def destroy
     @post = Post.find(params[:post_id])

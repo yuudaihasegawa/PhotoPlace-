@@ -1,6 +1,5 @@
+# frozen_string_literal: true
 class Public::TagsController < ApplicationController
-
-
 
   def show
     @tags = Tag.all
@@ -15,10 +14,9 @@ class Public::TagsController < ApplicationController
     @tags = @tag_search.result(distinct: true)
   end
 
-
   def new
     @post = Post.find(params[:post_id])
-    @tag= Tag.new
+    @tag = Tag.new
     @post_tag = PostTag.new
   end
 
@@ -26,10 +24,10 @@ class Public::TagsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title,:content,:price,post_images_attributes:[:id,:image_id],maps_attributes:[:id,:address,:latitude,:longitude]) 
+    params.require(:post).permit(:title, :content, :price, post_images_attributes: %i[id image_id], maps_attributes: %i[id address latitude longitude])
   end
 
   def tag_params
-    params.require(:tag).permit(:name,:id) 
+    params.require(:tag).permit(:name, :id)
   end
 end
