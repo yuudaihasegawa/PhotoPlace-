@@ -51,19 +51,24 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <h2 class="text-center">投稿者コメント</h2>
-              </div>
-              <div class="col-md-4">
                 <div class="row">
-                  <div class="col-md-12 text-center post-show">
-                    <%= attachment_image_tag @post.user, :profile_image, size: "200x200", fallback: "no_image.jpg" %></li>
-                      <%= link_to public_user_path(@post.user.id) do %>
-                      <div class="row">
-                        <div class="col-md-12 text-center">
-                          <%= @post.user.name%>
-                        </div>
+                  <div class="col-md-4">
+                    <div class="row">
+                      <div class="col-md-12 text-center post-show">
+                        <%= attachment_image_tag @post.user, :profile_image, size: "200x200", fallback: "no_image.jpg" %></li>
+                        <%= link_to public_user_path(@post.user.id) do %>
+                          <div class="row">
+                            <div class="col-md-12 text-center">
+                              <h2><%= @post.user.name %></h2>
+                            </div>
+                          </div>
+                        <% end %>
                       </div>
-                    <% end %>
+                    </div>
+                  </div>
+                  <div class="post-show col-md-8 post-user-comment">
+                    <h3 class="text-center">投稿者コメント</h3>
+                    <p class="text-center"><%= @post.content %></p>
                   </div>
                 </div>
               </div>
@@ -149,7 +154,9 @@
                     </div>
                   <div class="row">
                     <div class="col-md-12 text-center">
-                      <%= favorite.user.introduction.truncate(20) %>
+                      <% unless favorite.user.introduction.nil? %>
+                        <%= favorite.user.introduction.truncate(20) %>
+                      <% end %>
                     </div>
                   </div>
                 </div>
