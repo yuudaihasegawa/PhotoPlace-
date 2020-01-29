@@ -1,9 +1,6 @@
 
 <div class="container">
   <%= form_for @user, url: admin_user_path(@user) do |f| %> 
-    <div class="error">
-      <%= devise_error_messages! %>
-    </div>
     <div class="row">
       <div class="edit col-md-12">
         <h3 class="text-center">
