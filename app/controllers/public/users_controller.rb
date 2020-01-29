@@ -8,8 +8,6 @@ class Public::UsersController < ApplicationController
     end
   end
 
-
-class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @favorite = Favorite.where(user_id: @user.id)
