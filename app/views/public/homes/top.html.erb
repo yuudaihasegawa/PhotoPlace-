@@ -31,12 +31,12 @@
   </div>
   <div class="top-content">
     <div class="row">
-      <div class="col-md-8">
-        <p class="text-center">このサイトでは会員の投稿全てがGoogleマップ上に表示されます。</p>
-        <p class="text-center">どのような場所でどんな風景が見れるのかが一目瞭然です！</p>
-        <p class="text-center">サイトの使い方を知る前にmapを見てみませんか？</p>
+      <div class="col-md-10">
+        <p class="text-center">このサイトでは会員様の投稿全てがGoogleマップ上に表示されます。</p>
+        <p class="text-center">MAP上のピンをクリックすると投稿の写真といいね数が閲覧でき、そのまま詳細のページに移動できます。</p>
+        <p class="text-center">サイトの使い方を知る前に一度、右のアイコンからMAPを見てみませんか？</p>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
         <%= link_to public_maps_path, data: {"turbolinks" => false} do %>
           <i class="fas fa-map-marked-alt map-icon"></i>
         <% end %>
@@ -46,7 +46,10 @@
 </div>
 <div class="container">
   <div class="top-back-tag">
-    <h1 class="text-center back-text">人気のタグ</h1>
+    <h1 class="text-center back-text-title">Tags</h1>
+    <p class="text-center back-text">投稿には付けたいタグを好きなだけ付けることができ、</p>
+    <p class="text-center back-text">似たようなタグは自動的に既存のタグにまとめられます。</p>
+    <p class="text-center back-text">ここでは人気のタグを載せており、選択するとタグに関連づけられた投稿が閲覧できます。</p>
   </div>
   <div class="top-content">
     <div class="row">
@@ -63,12 +66,15 @@
 </div>
 <div class="container">
   <div class="top-back-new">
-    <h1 class="text-center back-text">新規投稿</h1>
+    <h1 class="text-center back-text-title">New</h1>
+    <p class="text-center back-text">今、投稿された最新の投稿を集めています。</p>
+    <p class="text-center back-text">流行りの風景や撮影スポットを知ることができます。</p>
+    <p class="text-center back-text">写真をクリックするとその投稿の詳細をみることができます。</p>
   </div>
   <div class="top-content">
     <div class="row">
       <% @new_posts.each do |post| %>
-        <div id="posts" >
+        <div id="posts">
           <div class="post_image">
             <%= link_to public_post_path(post) do %>
               <%= attachment_image_tag post.post_images.first, :image, size: "300x200", fallback: "no_image.jpg" %>
@@ -98,8 +104,10 @@
 </div>
 <div class="container">
   <div class="top-back-popular">
-    <h1 class="text-center back-text">人気の投稿</h1>
-    <p></p>
+    <h1 class="text-center back-text-title">Popular</h1>
+    <p class="text-center back-text">ここでは人気の投稿を載せています。</p>
+    <p class="text-center back-text">見る人が釘付けになるような写真だけを載せています。</p>
+    <p class="text-center back-text">写真をクリックするとその投稿の詳細をみることができます。</p>
   </div>
   <div class="top-content">
     <div class="row">

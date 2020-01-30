@@ -11,7 +11,7 @@ class Public::HomesController < ApplicationController
     # タグランキング
     post_tag_count = Tag.joins(:post_tags).group(:tag_id).count
     post_tag_ids = Hash[post_tag_count.sort_by{ |_, v| -v }].keys
-    @tag_ranking = Tag.where(id: post_tag_ids).order(id: "DESC").limit(30)
+    @tag_ranking = Tag.where(id: post_tag_ids).limit(30)
   end
 
 
