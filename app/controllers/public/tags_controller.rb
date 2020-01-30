@@ -2,7 +2,7 @@
 class Public::TagsController < ApplicationController
 
 
-  before_action :corrent_public, only: [:show,:new]
+  before_action :corrent_public, only: [:new]
   def corrent_public
     unless user_signed_in? 
       redirect_to new_user_registration_path

@@ -1,25 +1,19 @@
-# README
+Name
+PhotoPlace
+====
+Overview
+PhotoPlaceはGoogle MAPを利用し、撮影スポットを探しやすくした風景投稿サイトです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+#Functions list
 
-* Ruby version
-  ruby '2.5.7'
 
-* System dependencies
 
-* Configuration
+#Technology used
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+

@@ -81,6 +81,11 @@
           </li>
         <% else %> 
           <li>
+            <%= link_to public_maps_path, data: {"turbolinks" => false} do %>
+              <i class="fas fa-map-marked-alt"></i>
+            <% end %>
+          </li>
+          <li>
             <%= link_to public_homes_about_path do %>
               <i class="fas fa-book-reader"></i>
             <% end %>

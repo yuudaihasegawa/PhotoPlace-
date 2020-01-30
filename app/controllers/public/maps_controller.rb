@@ -1,12 +1,7 @@
 class Public::MapsController < ApplicationController
 
 
-  before_action :corrent_public, only: [:index]
-  def corrent_public
-    unless user_signed_in? 
-      redirect_to new_user_registration_path
-    end
-  end
+
 
   def index
     @posts = Post.all.includes(:favorites,:post_images)
