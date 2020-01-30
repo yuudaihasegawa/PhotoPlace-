@@ -4,10 +4,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2 tag-search">
+      <div class="col-md-12 text-center page-title">
+        <h3>タグ</h3>
+      </div>
       <div class="text-center">
         <%= search_form_for(@tag_search, url:public_posts_path) do |f| %>
-          <%= f.label :name, "タグ名" %>
-          <%= f.search_field :name_cont %>
+          <%= f.search_field :name_cont, class:"tag-field text-center" %>
           <%= f.submit "検索" ,class:"btn btn-secondary"%>
         <% end %>
       </div>
