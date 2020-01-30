@@ -4,7 +4,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2 tag-search">
-      <h4 class="text-center">タグ</h4>
       <div class="text-center">
         <%= search_form_for(@tag_search, url:admin_posts_path) do |f| %>
           <%= f.label :name, "タグ名" %>
