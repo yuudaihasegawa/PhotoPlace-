@@ -5,41 +5,127 @@
 
 // TOPページ
 
-.message {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%; 
-  height:45%;
-  bottom: 0; 
-  display: block;
-  position: absolute;
-  background-color: rgba(0,0,0,0.6);
-  color: #fff;
-  padding: 0.5em;
-}
+
 
 .top-h1{
-  padding: 100px;
+  padding: 50px;
 }
 
 .top-button{
-  padding: 50px;
-  height: 100px;
+  // padding: 50px;
+  height: 20px;
 }
 
-.top-back{
+.top-back-sign{
   background-image: image-url("top.jpg");
-  background-size: cover; 
+  background-position: 50% 45%;
+  background-repeat:  no-repeat;
+  background-size:  cover;
   width: 100%;
-  height: 600px;
+  height: 500px;
+  background-attachment: fixed;
 }
+
+.top-back-tag{
+  width: 100%;
+  height: 300px;
+  position: relative;
+  z-index: 0;
+}
+
+.top-back-tag::after {
+  display: block;
+  content: "";
+  background-image: image-url("tag.jpg");
+  background-repeat:  no-repeat;
+  background-size:  cover;
+  width: 100%;
+  height: 300px;
+  background-attachment: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: -2;
+}
+
+.top-back-new{
+  width: 100%;
+  height: 300px;
+  position: relative;
+  z-index: 0;
+}
+
+.top-back-new::after {
+  display: block;
+  content: "";
+  background-image: image-url("new.jpg");
+  background-repeat:  no-repeat;
+  background-size:  cover;
+  width: 100%;
+  height: 300px;
+  background-attachment: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: -2;
+}
+
+.top-back-popular{
+  width: 100%;
+  height: 300px;
+  position: relative;
+  z-index: 0;
+}
+
+.top-back-popular::after {
+  display: block;
+  content: "";
+  background-image: image-url("popular.jpg");
+  background-repeat:  no-repeat;
+  background-size:  cover;
+  width: 100%;
+  height: 300px;
+  background-attachment: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: -2;
+}
+
+
+.back-text {
+  width: 100%; /*absoluteで位置を設定するときに、幅と高さは必ず必要*/
+  height: 1.5em;
+  color: #000000;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}
+
+.top-content{
+  border: 2px solid #000;
+  border-top: none;
+  margin-bottom:100px;
+  padding:50px; 
+}
+
+.map-icon{
+  font-size: 100px;
+  color: black;
+
+  &:hover {
+      color: red;
+  }
+}
+
 
 .tag-ranking{
   padding: 5px;
+  
 }
-
-
 
 // aboutページ
 .about-back {

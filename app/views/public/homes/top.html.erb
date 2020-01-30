@@ -1,28 +1,26 @@
 <% if flash[:notice] %>
   <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>
 <% end %>
-<div class="top-back">
-  <div class="container">
+<div class="container">
+  <div class="top-back-sign">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-7">
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="row">
           <div class="col-md-12">
             <div class="text-center">
-              <h1 class="top-h1">ようこそ</h1>
+              <h1 class="top-h1">PhotoPlaceへ<br>ようこそ</h1>
             </div>
           </div>
         </div>
-        <div class="col-md-12">
-          <div classs="row">
-            <div class="col-md-6 text-center">
-              <div class="top-button">
+        <div classs="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6 text-center">
                 <%= link_to "sign in", new_user_session_path,class:"btn btn-success",role:"button"  %>
               </div>
-            </div>
-            <div class="col-md-6 text-center">
-              <div class="top-button">
+              <div class="col-md-6 text-center">
                 <%= link_to "sign up", new_user_registration_path,class:"btn btn-primary",role:"button" %>
               </div>
             </div>
@@ -31,14 +29,26 @@
       </div>
     </div>
   </div>
-</div>
-<div class="container">
-  <div class="page-title col-md-12">
+  <div class="top-content">
     <div class="row">
-      <div class="col-md-12">
-        <h1 class="text-center">タグランキング</h1>
+      <div class="col-md-8">
+        <p class="text-center">このサイトでは会員の投稿全てがGoogleマップ上に表示されます。</p>
+        <p class="text-center">どのような場所でどんな風景が見れるのかが一目瞭然です！</p>
+        <p class="text-center">サイトの使い方を知る前にmapを見てみませんか？</p>
+      </div>
+      <div class="col-md-4">
+        <%= link_to public_maps_path, data: {"turbolinks" => false} do %>
+          <i class="fas fa-map-marked-alt map-icon"></i>
+        <% end %>
       </div>
     </div>
+  </div>
+</div>
+<div class="container">
+  <div class="top-back-tag">
+    <h1 class="text-center back-text">人気のタグ</h1>
+  </div>
+  <div class="top-content">
     <div class="row">
       <% @tag_ranking.each do |tag| %>
         <div class="tag-ranking text-center">
@@ -52,12 +62,10 @@
   </div>
 </div>
 <div class="container">
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="text-center">新規投稿</h1>
-      </div>
-    </div>
+  <div class="top-back-new">
+    <h1 class="text-center back-text">新規投稿</h1>
+  </div>
+  <div class="top-content">
     <div class="row">
       <% @new_posts.each do |post| %>
         <div id="posts" >
@@ -89,12 +97,11 @@
   </div>
 </div>
 <div class="container">
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="text-center">人気の写真</h1>
-      </div>
-    </div>
+  <div class="top-back-popular">
+    <h1 class="text-center back-text">人気の投稿</h1>
+    <p></p>
+  </div>
+  <div class="top-content">
     <div class="row">
       <% @post_ranking.each do |post| %>
         <div id="posts" >
