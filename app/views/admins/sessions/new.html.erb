@@ -1,29 +1,41 @@
-<h1 class="text-center">Log in</h1>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="container">
   <div class="col-md-12">
-      <div class="error">
-        <%= devise_error_messages! %>
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">管理者 Log_in</h1>
       </div>
-      <div class="row">
-        <div class="sign col-md-12">
-          <div class="text-center">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="error">
+          <%= devise_error_messages! %>
         </div>
       </div>
-
-      <div class="row">
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="sign col-md-4">
+        <div class="text-center">
+          <p>Admin user</p>
+          <p>Email： aaaaa@ne </p>
+          <p>Password： aaaaaa </p>
+        </div>
+      </div>
+      <div class="sign col-md-4">
         <div class="sign col-md-12">
           <div class="text-center"> 
             <%= f.label :password %><br />
             <%= f.password_field :password, autocomplete: "current-password" %>
           </div>
         </div>
-      </div>
-      <div class="row">
+        <div class="sign col-md-12">
+          <div class="text-center">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+        </div>
         <div class="sign col-md-12">
           <div class="text-center">
             <% if devise_mapping.rememberable? %>
@@ -34,13 +46,16 @@
             <% end %>
           </div>
         </div>
-      </div>
-      <div class="row">
         <div class="sign col-md-12">
           <div class="text-center">
             <%= f.submit "Log in",class:"btn btn-success"%>
           </div>
         </div>
       </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
 
