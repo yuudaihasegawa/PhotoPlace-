@@ -2,12 +2,12 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="container">
-  <div class="col-md-12">
+  <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="error">
         <%= devise_error_messages! %>
       </div>
       <div class="row">
-        <div class="sign col-md-12">
+        <div class="sign col-sm-12 col-md-12 col-lg-12">
           <div class="text-center">
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -16,7 +16,7 @@
       </div>
 
       <div class="row">
-        <div class="sign col-md-12">
+        <div class="sign col-sm-12 col-md-12 col-lg-12">
           <div class="text-center"> 
             <%= f.label :password %><br />
             <%= f.password_field :password, autocomplete: "current-password" %>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="sign col-md-12">
+        <div class="sign col-sm-12 col-md-12 col-lg-12">
           <div class="text-center">
             <% if devise_mapping.rememberable? %>
               <div class="field">
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="sign col-md-12">
+        <div class="sign col-sm-12 col-md-12 col-lg-12">
           <div class="text-center">
             <%= f.submit "Log in",class:"btn btn-success"%>
           </div>
