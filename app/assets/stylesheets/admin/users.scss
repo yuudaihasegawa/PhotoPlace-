@@ -7,20 +7,14 @@
 }
 
 .profile {
-  // padding: 20px;
+  padding: 20px;
 }
 
 
 // edit画面
 .edit {
-  padding-top: 20px;
-  padding-bottom: 20px; 
+  padding: 20px;
   font-size: 20px;
-
-}
-
-.file_name{
-  @media screen { #filename { display: none; } }
 }
 
 .text {

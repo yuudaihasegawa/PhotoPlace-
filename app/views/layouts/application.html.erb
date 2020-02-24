@@ -117,55 +117,6 @@
         <i class="fas fa-chevron-circle-up"></i>
       </a>
     </span>
-    <ul class="bottom-menu">
-      <div class="container">
-        <div class="row no-gutters">
-          <% if user_signed_in? %>
-            <li class="col-3 col-sm-3 text-center">
-              <%= link_to public_user_path(current_user.id) do %>
-                <i class="fas fa-user"></i><br><span class="mini-text">HOME</span>
-              <% end %>
-            </li>
-            <li class="col-3 col-sm-3 text-center">
-              <%= link_to public_posts_path do %>
-                <i class="far fa-images"></i><br><span class="mini-text">POST</span>
-              <% end %>
-            </li>
-            <li class="col-3 col-sm-3 text-center">
-              <%= link_to public_maps_path, data: {"turbolinks" => false} do %>
-                <i class="fas fa-map-marked-alt"></i><br><span class="mini-text">MAP</span>
-              <% end %>
-            </li>
-            <li class="col-3 col-sm-3 text-center">
-              <%= link_to new_public_user_post_path(current_user) do %>
-                <i class="fas fa-book-open"></i><br><span class="mini-text">NEW</span>
-              <% end %>
-            </li>
-          <% else %>
-            <li class="col-3 col-sm-3 text-center">
-              <%= link_to public_homes_about_path do %>
-                <i class="fas fa-book-reader"></i><br><span class="mini-text">ABOUT</span>
-              <% end %>
-            </li>
-            <li class="col-3 col-sm-3 text-center">
-              <%= link_to public_maps_path, data: {"turbolinks" => false} do %>
-                <i class="fas fa-map-marked-alt"></i><br><span class="mini-text">MAP</span>
-              <% end %>
-            </li>
-            <li class="col-3 col-sm-3 text-center">
-              <%= link_to new_user_session_path do %>
-                <i class="fas fa-sign-in-alt"></i><br><span class="mini-text">Sign_In</span>
-              <% end %>
-            </li>
-            <li class="col-3 col-sm-3 text-center">
-              <%= link_to new_user_registration_path do %>
-                <i class="fas fa-user-plus"></i><br><span class="mini-text">Sign_Up</span>
-              <% end %>
-            </li>
-          <% end %>
-        </div>
-      </div>
-    </ul>
   </body>
   <footer class="footer">
     <div class="row no-gutters">

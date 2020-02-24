@@ -1,6 +1,6 @@
 
 
-<div id="map"></div>
+<div id="map" style="width: 100%; height: 800px;"></div>
 <script type="text/javascript">
     
     function initMap() {
@@ -29,18 +29,16 @@
       <% @posts.each do |post| %>
       (function(){
         var contentString = '<div class="container">'+
-        '<%= attachment_image_tag post.post_images.first, :image,class:"map_image", fallback: "no_image.jpg" %>'+
+        '<%= attachment_image_tag post.post_images.first, :image, size: "250x200",class:"map_image", fallback: "no_image.jpg" %>'+
         '<div class="row">'+
-        '<div class="col-6 text-center">'+
+        '<div class="col-md-4">'+
         '<%= post.user.name %>'+
         '</div>'+
-        '<div class="col-6 text-center">'+
+        '<div class="col-md-4">'+
         '<%= post.favorites.count %>いいね'+
         '</div>'+
-        '</div>'+
-        '<div class="row">'+
-        '<div class="col-12 text-center">'+
-        '<%= link_to "Details",public_post_path(post), data: {"turbolinks" => false},class:"btn btn-primary btn-sm"%>'+
+        '<div class="col-md-4">'+
+        '<%= link_to "詳細",public_post_path(post), data: {"turbolinks" => false} %>'+
         '</div>'+
         '</div>'+
         '</div>'; 
