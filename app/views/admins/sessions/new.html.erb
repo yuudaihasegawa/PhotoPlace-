@@ -28,8 +28,8 @@
           <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="sign">
               <div class="text-center">
-                <%= f.label :password %><br />
-                <%= f.password_field :password, autocomplete: "current-password" %>
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
               </div>
             </div>
           </div>
@@ -38,8 +38,8 @@
           <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="sign col-md-12">
               <div class="text-center">
-                <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <%= f.label :password %><br />
+                <%= f.password_field :password, autocomplete: "current-password" %>
               </div>
             </div>
           </div>
