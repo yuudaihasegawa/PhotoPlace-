@@ -7,95 +7,39 @@
 
 .form-group {
   width: 100%;
-  margin: 10px;
+  margin: 10px 0px;
 }
 
 .container {
   width: 100px;
 }
 
-.col-md-8{
-  height: 100%;
+
+.show-bxslider{
+  width: 100%;
+  height: auto;
 }
 
-
-.col-md-4 {
-  height: 100%;
+#map-show{
+  height: 300px;
+  width: 100%;
 }
 
-// post_index
-#posts {
-  float: left;
-  position: relative;
-  display: block;
-  width: 300px;
-  margin: 10px auto;
-  color: #ffffff;
-  border: 1px solid #000000;
-  overflow: hidden;
-  
-
-  .post_image {
-    position: relative;
-    height: 200px;
-  }
-
-  .image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .post_text {
-    height: 25%;
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    padding-bottom: 28px;
-    color: #ffffff;
-    background-color: rgba(0,0,0,0.5);
-    transition: 0.1s;
-    transform: translateY(100%);
-  }
-
-  &:hover {
-    .hide {
-      transform: translateY(0);
-    }
-    .post_text {
-      top: 50%;
-      color: #ffffff;
-    }
-  }
+.day{
+  overflow-wrap: break-word;
 }
 
-
-
-
-
-.col-md-3 {
-// border: 2px solid whitesmoke;
-}
 
 .images {
   background-image: url(image_id);
   }
 
-.form-group {
-  width: 100%;
-}
 
 .text {
   width: 100%;
   height: 100px;
 }
-// post.show
-.show_map {
-  width: 100%;
-  height: 500px;
-}
+
 
 .post-show {
   padding: 20px;
@@ -110,6 +54,14 @@
   padding: 20px;
 }
 
+.favo_user{
+  width: 50%;
+  height: auto;
+}
+
+.user_name{
+  font-size: 16px
+}
 
 
 // .modal{

@@ -7,8 +7,9 @@
 
 
 
-.top-h1{
+.top-title{
   padding: 50px;
+  font-size: 30px;
 }
 
 .top-button{
@@ -18,17 +19,21 @@
 
 .top-back-sign{
   background-image: image-url("top.jpg");
-  background-position: 50% 45%;
   background-repeat:  no-repeat;
-  background-size:  cover;
+  background-size: cover;
   width: 100%;
   height: 500px;
   background-attachment: fixed;
+  background-position:50% 90%;
+}
+
+.top-content{
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .top-back-tag{
   width: 100%;
-  height: 350px;
+  height: 400px;
   position: relative;
   z-index: 0;
 }
@@ -39,8 +44,9 @@
   background-image: image-url("tag.jpg");
   background-repeat:  no-repeat;
   background-size:  cover;
+  background-position: 50% 30%;
   width: 100%;
-  height: 350px;
+  height: 400px;
   background-attachment: fixed;
   position: absolute;
   top: 0;
@@ -48,6 +54,8 @@
   opacity: 0.5;
   z-index: -2;
 }
+
+
 
 .top-back-new{
   width: 100%;
@@ -62,6 +70,7 @@
   background-image: image-url("new.jpg");
   background-repeat:  no-repeat;
   background-size:  cover;
+  background-position: 50% 30%;
   width: 100%;
   height: 300px;
   background-attachment: fixed;
@@ -85,6 +94,7 @@
   background-image: image-url("popular.jpg");
   background-repeat:  no-repeat;
   background-size:  cover;
+  background-position: 50% 30%;
   width: 100%;
   height: 300px;
   background-attachment: fixed;
@@ -169,7 +179,7 @@
   margin:auto;
   background: rgba(22,22,22, 0.7);
   width: 100%;
-  max-width: 960px;
+  max-width: 80%;
   border-radius: 5px;
   padding-bottom: 32px;
 }

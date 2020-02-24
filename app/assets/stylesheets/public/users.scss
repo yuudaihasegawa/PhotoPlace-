@@ -9,11 +9,16 @@
 }
 
 .user-introduction{
-  height: 100%;
+  height: auto;
   overflow-wrap: break-word;
   border: 1px solid #000;
   border-top: none;
   margin-bottom: 30px; 
+}
+
+.profile_image{
+  width: 100%;
+  height: auto;
 }
 
 .profile {
@@ -23,92 +28,12 @@
 .nav-tabs {
   border-bottom:none;
 }
-//タブメニュー
-.wrap{
+
+.comment_profile{
+  height: auto;
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
 }
 
-#tab-menu li {
-  float: left;
-  list-style-type: none;
-  width: 23%;
-}
-
-#tab-menu a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 20px;
-  text-align: center;
-  background: #000;
-  border: 1px solid #000;
-  border-bottom: none;
-}
-
-#tab-menu .active {
-  background: #fff;
-  color: #000;
-}
-
-#tab-contents .tab {
-  padding: 30px;
-  background: #fff;
-  border: 1px solid #000;
-  border-top: none;
-}
- 
-#tab-contents p{
-  color:#000;
-  line-height: 2.5;
-}
-
-#posts {
-  float: left;
-  position: relative;
-  display: block;
-  width: 25%;
-  margin: 10px auto;
-  color: #ffffff;
-  border: 1px solid #000000;
-  overflow: hidden;
-
-  .post_image {
-    position: relative;
-    height: 200px;
-  }
-
-  .image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .post_text {
-    height: 25%;
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    padding-bottom: 28px;
-    color: #ffffff;
-    background-color: rgba(0,0,0,0.5);
-    transition: 0.5s;
-    transform: translateY(100%);
-  }
-
-  &:hover {
-    .hide {
-      transform: translateY(0);
-    }
-    .post_text {
-      top: 50%;
-      color: #ffffff;
-    }
-  }
-}
 
 // edit画面
 .edit {
