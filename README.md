@@ -6,10 +6,9 @@ Overview
 
 DEMO
 ----
+*管理者ログインの際は以下URLで管理者ログイン画面に移動できます。  
+http://photoplace.work/admins/sign_in*
 ![README](https://user-images.githubusercontent.com/56124478/73640813-45f49000-46b2-11ea-8bc5-8ee7136c91e6.gif)
-
-
-
 Features
 ----
 このサイトの強みはMAPから投稿の風景を探すことができることです。
@@ -77,14 +76,8 @@ Functions list
 	    タグの検索・一覧表示:&emsp;投稿情報につけられるタグを一覧で表示し、検索できる。  
             タグの生成:&emsp;タグの編集・削除が行えます。  
 
-
-
-
-
-
-
-
-
-
-
-
+Install
+----
+$ git clone https://github.com/yuudaihasegawa/PhotoPlace- （GitHub上からアプリをダウンロードしてください。）  
+$ bundle install  (gemをinstall)
+$ rails db:migrate  (dbを作成)
